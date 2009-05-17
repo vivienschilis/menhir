@@ -1,0 +1,101 @@
+.overview tr {
+	padding:4px;
+	border:none;
+}
+
+.overview tr td {
+	padding:4px;
+	border:none;
+}
+
+.overview tr td.what {
+	width:68px;
+}
+
+.overview tr td.item {
+	border-bottom: 1px solid rgb(240, 240, 238);
+	text-align:left;
+}
+
+.overview h2.date {
+	margin-bottom: 4px;
+	margin-left: -20px;
+	font-size:14px;
+}
+
+.overview h2.date span.today {
+	background-color: #fff000;
+	color: #000;
+	font-weight: bold;
+	border-bottom: none;
+	padding-left:34px;
+	text-align:right;
+	font-size:13px;
+}
+
+
+.overview span.milestone {
+	background-color: #939916;
+	color: #fff;
+	border: none;
+	width:68px;
+	padding:2px 4px 2px 4px;
+	display:block;
+	text-align:right;
+}
+
+.overview span.todo {
+	background-color: #395C99;
+	color: #fff;
+	border: none;
+	text-align:right;
+	width:68px;
+	padding:2px 4px 2px 4px;
+	display:block;
+}
+
+.overview h2.date span.other {
+	border-bottom: 1px solid rgb(102, 102, 102);
+	color: rgb(102, 102, 102);
+	padding-left:34px;
+	text-align:right;
+	width:68px;
+	font-size:13px;
+}
+
+.todo_list .todo_list_title {
+	font-size:18px;
+	text-decoration:underline;
+	font-weight:bold;
+}
+
+.todo_list .add_todo_list {
+	padding:5px;
+	background-color: rgb(240, 240, 240);
+	width:450px;
+}
+.todo_list .new_todo_list {
+	padding:5px;
+	background-color: rgb(240, 240, 240);
+	width:450px;
+}
+
+.todo_list .todos {
+	margin-left:15px;
+	margin-top:10px;
+}
+
+.todo_list .todos ul {
+	list-style-type:none;
+	cursor:move;
+}
+
+
+.todo_list .todos ul li {
+	margin-bottom:4px;
+	font-size:14px;
+}`
+
+.drage_handle {
+	cursor
+}

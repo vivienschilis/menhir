@@ -1,0 +1,2 @@
+module ShackmatesHelper
+end

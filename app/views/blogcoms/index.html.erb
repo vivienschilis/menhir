@@ -1,0 +1,25 @@
+<% title "Blogcoms" %>
+
+<table>
+  <tr>
+    <th>Poster</th>
+    <th>Website</th>
+    <th>Blogpost</th>
+    <th>Content</th>
+    <th>Public</th>
+  </tr>
+  <% for blogcom in @blogcoms %>
+    <tr>
+      <td><%=h blogcom.poster %></td>
+      <td><%=h blogcom.website %></td>
+      <td><%=h blogcom.blogpost_id %></td>
+      <td><%=h blogcom.content %></td>
+      <td><%=h blogcom.public_id %></td>
+      <td><%= link_to "Show", blogcom %></td>
+      <td><%= link_to "Edit", edit_blogcom_path(blogcom) %></td>
+      <td><%= link_to "Destroy", blogcom, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Blogcom", new_blogcom_path %></p>

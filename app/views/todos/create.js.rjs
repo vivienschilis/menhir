@@ -1,0 +1,6 @@
+sortable_list_id="sortable_todo_list_" + @todo_list.id.to_s
+todo_talk_id="todo_" + @todo.id.to_s
+
+@atodo = @todo
+page.insert_html :bottom, sortable_list_id, :partial => 'a_todo.html.erb'
+page.visual_effect :highlight, todo_talk_id

@@ -1,0 +1,28 @@
+<% title "Blogcom" %>
+
+<p>
+  <strong>Poster:</strong>
+  <%=h @blogcom.poster %>
+</p>
+<p>
+  <strong>Website:</strong>
+  <%=h @blogcom.website %>
+</p>
+<p>
+  <strong>Blogpost:</strong>
+  <%=h @blogcom.blogpost_id %>
+</p>
+<p>
+  <strong>Content:</strong>
+  <%=h @blogcom.content %>
+</p>
+<p>
+  <strong>Public:</strong>
+  <%=h @blogcom.public_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_blogcom_path(@blogcom) %> |
+  <%= link_to "Destroy", @blogcom, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", blogcoms_path %>
+</p>

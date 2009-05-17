@@ -1,0 +1,28 @@
+Welcome to Teamshack. Please log in to continue.<br />
+
+<%unless flash[:notice].nil?%>
+	<div style="color:red;padding:15px;"><%=flash[:notice]%></div>
+<%end%>
+
+<br />
+<% form_for %>
+<table >
+<tr>
+	<td style="font-size : 20px;padding:5px;">
+		Login
+	</td>
+	<td> 
+		<%= f.text_field :login %>
+	</td>
+</tr>
+<tr>
+	<td style="font-size : 20px;padding:5px;">
+		Password 
+	</td>
+	<td>
+		<%= f.text_field :password %>
+	</td>
+</tr>
+</table><br />
+<input type="submit" style="font-size : 20px;padding:5px;" value="Go!">
+<%end -%>

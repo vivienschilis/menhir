@@ -1,0 +1,16 @@
+<p>
+  <strong>Description:</strong>
+  <%=h @milestone.description %>
+</p>
+<p>
+  <strong>Date:</strong>
+  <%=h @milestone.date %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_project_milestone_path(@project,@milestone) %> |
+  <%= link_to "Destroy", [@project,@milestone], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", project_milestones_path %>
+</p>
+
+

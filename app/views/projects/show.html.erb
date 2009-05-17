@@ -1,0 +1,59 @@
+<div class="block">
+	<div class="block-header">
+		<div class="block-header-links">
+			<%= link_to "New milestones", new_project_milestone_path(@project) %> |
+	    <%= link_to "New todo list",  new_project_todo_list_path(@project) %> 
+		</div>
+	  Project overview & activity
+	</div>
+	
+	<div class="content">
+		<div class="inner">
+			<table class="table overview">
+				<% @project.milestones.each do |milestone|%>
+				<tr class="date">
+					<td class="what" colspan="2"><h2 class="date"><span class="today">TODAY</span></h2></td>
+				</tr>
+				<tr>
+					<td class="what"><span class="milestone">Milestone</span></td>
+					<td class= "item ">blahblahba</td>
+				</tr>
+				<tr class="date">
+					<td class="what" colspan="2"><h2 class="date"><span class="other">septembre 19th</span></h2></td>
+				</tr>
+				<tr>
+					<td class="what"><span class="todo">To-Do</span></td>
+					<td class= "item ">mmomomom</td>
+				</tr>
+				<tr class="odd">
+					<td>
+						<%# remote_form_for [@project,milestone] do |form|%>
+						<%#= form.check_box() %>
+						<%= milestone.title %>
+						</td>
+				</tr>
+				<% end %>
+			</table>
+			
+		</div>
+	</div>
+</div>
+
+<% content_for :sidebar do %>
+<div class="block">
+  <h3>People on this project</h3>
+  <ul class="navigation">
+    <li><%= link_to "User1", "#" %> </li>
+    <li><%= link_to "User2", "#" %> </li>
+  </ul>          
+</div>
+
+
+  <div class="block">
+    <h3>Manage your project</h3>
+    <ul class="navigation">
+      <li><%= link_to "Manage milestones", project_milestones_path(@project) %> </li>
+      <li><%= link_to "Manage todo list", project_todo_list_path(@project) %> </li>
+    </ul>          
+  </div>
+<% end %>

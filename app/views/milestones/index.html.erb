@@ -1,0 +1,36 @@
+<div class="block">
+	<div class="block-header">
+		Milestones
+	</div>
+	
+	<div class="content">
+		<div class="inner">
+			<table class="table">
+				<tr>             
+					<th class="first">upcoming</th>
+				</tr>
+				<% @milestones.each do |milestone|%>
+				<tr class="odd">
+					<td>
+						<%# remote_form_for [@project,milestone] do |form|%>
+						<%#= form.check_box() %>
+						<%= milestone.title %> -
+						<%= link_to "edit" , edit_project_milestone_path(@project,milestone)%>
+						</td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+</div>
+
+<% content_for :sidebar do %>
+
+<div class="block">
+  <h3>Manage your milestones</h3>
+  <ul class="navigation">
+    <li><%= link_to "+ New milestone", 	new_project_milestone_path(@project) %> </li>
+  </ul>          
+</div>
+
+<% end %>

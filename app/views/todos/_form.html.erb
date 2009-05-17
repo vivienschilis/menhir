@@ -1,0 +1,24 @@
+<% form_for @todo do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :todo_list_id %><br />
+    <%= f.text_field :todo_list_id %>
+  </p>
+  <p>
+    <%= f.label :progression %><br />
+    <%= f.text_field :progression %>
+  </p>
+  <p>
+    <%= f.label :milestone_id %><br />
+    <%= f.text_field :milestone_id %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

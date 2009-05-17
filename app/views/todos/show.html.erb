@@ -1,0 +1,28 @@
+<% title "Todo" %>
+
+<p>
+  <strong>Todo List:</strong>
+  <%=h @todo.todo_list_id %>
+</p>
+<p>
+  <strong>Progression:</strong>
+  <%=h @todo.progression %>
+</p>
+<p>
+  <strong>Milestone:</strong>
+  <%=h @todo.milestone_id %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%=h @todo.description %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%=h @todo.user_id %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_todo_path(@todo) %> |
+  <%= link_to "Destroy", @todo, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", todos_path %>
+</p>

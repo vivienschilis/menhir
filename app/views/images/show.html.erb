@@ -1,0 +1,16 @@
+<% title "Image" %>
+
+<p>
+  <strong>Project:</strong>
+  <%=h @image.project_id %>
+</p>
+<p>
+  <strong>File:</strong>
+  <%=h @image.file %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_image_path(@image) %> |
+  <%= link_to "Destroy", @image, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", images_path %>
+</p>

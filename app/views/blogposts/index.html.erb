@@ -1,0 +1,21 @@
+<% title "Blogposts" %>
+
+<table>
+  <tr>
+    <th>Project</th>
+    <th>Title</th>
+    <th>Content</th>
+  </tr>
+  <% for blogpost in @blogposts %>
+    <tr>
+      <td><%=h blogpost.project_id %></td>
+      <td><%=h blogpost.title %></td>
+      <td><%=h blogpost.content %></td>
+      <td><%= link_to "Show", [@project,blogpost] %></td>
+      <td><%= link_to "Edit", edit_project_blogpost_path(@project,blogpost) %></td>
+      <td><%= link_to "Destroy", [@project,blogpost], :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Blogpost", new_project_blogpost_path(@project) %></p>

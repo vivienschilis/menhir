@@ -1,0 +1,16 @@
+<% form_for [@project,@todo_list], :html => {:class => "form" }  do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+		<h3>Name of the Todo liste</h3>
+		<div class="gray ">eg. Things concerning a new feature)</div>
+	</p>
+	<p >
+		<%= f.text_field :name, :style => "width:400px" %>
+	<p>
+
+
+  <p class="navform right ">
+    <%= f.submit "Create" %>
+  </p>
+<% end %>

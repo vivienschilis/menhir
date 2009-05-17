@@ -1,0 +1,99 @@
+#sidebar .content{
+	padding-top: 20px;
+	text-align: center;
+}
+#sidebar .content h3{
+	font-size: 120%;
+	margin: 0 0 5px 0;
+	padding: 0 0 0 0;
+}
+#sidebar .content .overview{
+	background: url(images/side_overview_bg.jpg) center top no-repeat;
+	height: 114px;
+	padding-top:10px;
+	text-align: left;
+}
+#sidebar .content .overview h1{
+	text-align: center;
+	font-weight: normal;
+	font-size: 140%;
+	color: #999;
+}
+#sidebar .content .overview div{
+	margin-left: 60px;
+	margin-bottom: 5px;
+}
+#sidebar .content a{
+	text-decoration: none;
+	padding: 0;
+}
+
+/*
+ * LOL attention ya des trucs à virer
+ */
+#sidebar table{
+	margin-left:7px;
+}
+#sidebar .calendarbox{
+	height: 135px;
+	width: 209px;
+	padding: 5px 0 0 11px;
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	border: 2px solid #CCC;
+	background: white;
+	font-size:11px;
+}
+
+#sidebar .calendar_today {
+	position:absolute;
+	top:0;
+	left:0;
+	border-right:2px solid #CCC;
+	border-bottom:2px solid #CCC;
+	padding:2px;
+	color:black;
+}
+
+#sidebar .calendarbox a:link {
+	color:black;
+}
+#sidebar #teamchat {
+	position: absolute;
+	width: 220px;
+	left: 20px;
+	bottom: 90px;
+	top: 180px;
+}
+
+#sidebar #teamchat .conversation{
+	position: absolute;
+	width: 100%;
+	margin: 5px 0 0 0;
+	overflow-y: scroll;
+	overflow-x:hidden;
+	text-align: left;
+	background: white;
+	border: 2px solid #CCC;
+	top: 15px;
+	bottom:35px;
+	padding:5px;
+}
+#sidebar #teamchat input{
+	width: 230px;
+	border: 2px #CCC solid;
+}
+
+#sidebar #teamchat #post{
+    position: absolute;
+    bottom: 5px;
+}
+
+#sidebar #user_here{
+    width: 230px;
+    font-size: 90%;
+    border-top: 1px solid #ccc;
+}
+/*********************************/
+

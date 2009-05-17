@@ -1,0 +1,33 @@
+<% form_for @user, :html => {:class => "form"} do |f| %>
+
+	<p> Choose a user name and password</p>
+	<div class="bg-grey">
+    <div class="group">
+      <div class="left">
+		    <%= f.label :password, "Password:", :class => "label right" %>
+      </div>
+      <div class="right">
+		    <%= f.password_field :password, :class =>"text_field" %>	</td>
+      </div>              
+      <div class="clear"></div>
+    </div>
+
+    <div class="group last">
+      <div class="left">
+		    <%= f.label :password_confirmation, "Confirmation:", :class => "label right" %>
+      </div>
+      <div class="right">
+		    <%= f.password_field :password_confirmation, :class =>"text_field" %>	</td>
+      </div>              
+      <div class="clear"></div>
+    </div>
+	</div>
+
+	<br/>
+   <div class="group navform">
+     <div class="right">
+			<%= f.submit "Login" %>
+     </div>
+     <div class="clear"></div>
+   </div>
+<% end %>

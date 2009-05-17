@@ -1,0 +1,21 @@
+<% title "Shackmates" %>
+
+<table>
+  <tr>
+    <th>Project</th>
+    <th>User</th>
+    <th>Level</th>
+  </tr>
+  <% for shackmate in @shackmates %>
+    <tr>
+      <td><%=h shackmate.project_id %></td>
+      <td><%=h shackmate.user_id %></td>
+      <td><%=h shackmate.level %></td>
+      <td><%= link_to "Show", shackmate %></td>
+      <td><%= link_to "Edit", edit_shackmate_path(shackmate) %></td>
+      <td><%= link_to "Destroy", shackmate, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Shackmate", new_shackmate_path %></p>

@@ -1,0 +1,14 @@
+<% title "New Image" %>
+
+<% form_for [@project,@image], :html => { :multipart => true }  do |f| %>
+  <div>
+    <%= f.label(:file, 'Upload photo') %>
+    <%= f.file_field(:file) %>
+  </div>
+
+	<p><%= f.submit "Submit" %></p>
+
+<% end %>
+
+
+<p><%= link_to "Back to List", project_images_path(@project) %></p>

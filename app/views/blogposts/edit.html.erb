@@ -1,0 +1,8 @@
+<% title "Edit Blogpost" %>
+
+<%= render :partial => 'form' %>
+
+<p>
+  <%= link_to "Show", [@project,@blogpost] %> |
+  <%= link_to "View All", project_blogposts_path(@project) %>
+</p>

@@ -1,0 +1,10 @@
+<p>
+  <strong>Name:</strong>
+  <%=h @todo_list.name %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_project_todo_list_path(@project,@todo_list) %> |
+  <%= link_to "Destroy", [@project,@todo_list], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", project_todo_lists_path(@project) %>
+</p>

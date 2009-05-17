@@ -1,0 +1,13 @@
+one:
+  poster: MyString
+  website: MyString
+  blogpost_id: 1
+  content: MyText
+  public_id: 1
+
+two:
+  poster: MyString
+  website: MyString
+  blogpost_id: 1
+  content: MyText
+  public_id: 1

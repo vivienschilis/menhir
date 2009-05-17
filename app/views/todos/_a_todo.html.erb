@@ -1,0 +1,13 @@
+<li id="todo_<%=@atodo.id%>">
+	<% remote_form_for [@project, @atodo_list, @atodo], :url => {:action => "complete" } do |form| %>
+		<%= image_tag 'drag_handle.gif', :class => 'drag_handle' %>
+		<%= form.check_box(:completed)%> <%= @atodo.task %>
+	
+		<%= link_to_remote image_tag('trash.gif', :class => 'trash'), 
+				:url =>{ :controller => "todos", :action => "destroy" , :id => @atodo.id ,
+					:project_id => @project.id, :todo_list_id => @atodo_list.id } ,
+					:method => :delete, :confirm => "are you sure"
+				%>
+	<% end %>
+	
+</li>

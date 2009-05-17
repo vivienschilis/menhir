@@ -1,0 +1,58 @@
+<div class="block">
+	<div class="block-header">
+		Todo Lists
+	</div>
+	<div class="content">
+		<div class="inner">
+			
+				<% @todo_lists.each do |todo_list|%>
+					<div id="todo_list_<%=todo_list.id%>" class="todo_list">
+						<div class="todo_list_title">
+							<%= todo_list.name %>
+						</div>
+						<div id="todo_list_<%=todo_list.id%>_uncompleted_tasks" class="todos">
+							<ul id="sortable_todo_list_<%=todo_list.id%>">
+								<% todo_list.todos.each do |todo| %>
+									<% @atodo_list = todo_list%>
+									<% @atodo = todo %>
+									<%= render :partial => "todos/a_todo" %>
+								<% end %>
+							</ul>
+							<script>Sortable.create("sortable_todo_list_<%=todo_list.id%>", 
+																			{handles:$$('sortable_todo_list_<%=todo_list.id%> img#drag_handle')});
+							</script>	
+							
+						</div>
+						<div id="new_todo_list_<%=todo_list.id%>" class="new_todo_list" style="display:none">
+							<% remote_form_for [@project,todo_list, todo_list.todos.new] do |form| %>
+								<div class='small gray'>Enter a new to-do </div>
+								<%= form.text_area :task, :rows => 3, :cols=>50 %>
+								<p><%= form.submit "Add this todo" %> or 
+									<%= link_to_function 'cancel', "
+									$('add_todo_list_#{todo_list.id}').show();
+									$('new_todo_list_#{todo_list.id}').hide();
+									" %>
+								</p>
+								<div class='small gray'>Who is responsable?</div>
+							<% end %>
+						</div>				
+						<div id="add_todo_list_<%=todo_list.id%>" class="add_todo_list">
+							<%= link_to_function("New todo"," 
+							$('new_todo_list_#{todo_list.id}').show(); $('add_todo_list_#{todo_list.id}').hide();")%>
+						</div>
+					</div>
+				<% end %>
+
+		</div>
+	</div>
+</div>
+
+
+<% content_for :sidebar do %>
+	<div class="block">
+	  <h3>Manage your To-Do lists</h3>
+	  <ul class="navigation">
+	    <li><%= link_to "+ New Todo-list", 	new_project_todo_list_path(@project) %></li>
+	  </ul>          
+	</div>
+<% end %>

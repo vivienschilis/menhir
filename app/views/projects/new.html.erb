@@ -1,0 +1,40 @@
+<div class="block">
+	<div class="block-header">
+		<div class="block-header-links">
+		<%= link_to "New milestones", new_project_milestone_path(@project) %> |
+    <%= link_to "New todo list",  new_project_todo_list_path(@project) %> 
+		</div>
+  	New Project
+	</div>
+	<div class="content">
+  	<div class="inner">
+
+
+			<% form_for @project, :html => {:class => "form" } do |f| %>
+			  <%= f.error_messages %>
+			  <p>
+					<h3>Project name</h3>
+					<div class="gray ">The project name appears at the top of every page.</div>
+				</p>
+				<p class="bg-grey">
+					<%= f.text_field :name %>
+				<p>
+				<br/>
+				<p>
+					<h3>Description</h3>
+					<div class="gray ">Describe briefly the project</div>
+				</p>
+				<p class="bg-grey">
+			    <%= f.text_area :description %>
+			  </p>
+
+			  <p class="navform right ">
+			    <%= f.submit "Update" %>
+			  </p>
+			<% end %>
+
+
+			<%= link_to "Back to List", projects_path %>
+		</div>
+	</div>
+</div>

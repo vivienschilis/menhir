@@ -1,0 +1,20 @@
+<% title "Shackmate" %>
+
+<p>
+  <strong>Project:</strong>
+  <%=h @shackmate.project_id %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%=h @shackmate.user_id %>
+</p>
+<p>
+  <strong>Level:</strong>
+  <%=h @shackmate.level %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_shackmate_path(@shackmate) %> |
+  <%= link_to "Destroy", @shackmate, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", shackmates_path %>
+</p>
