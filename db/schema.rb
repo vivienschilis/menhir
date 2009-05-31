@@ -9,7 +9,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090517003218) do
+ActiveRecord::Schema.define(:version => 20090525154304) do
+
+  create_table "avatars", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "photo_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "blogcoms", :force => true do |t|
     t.string   "poster"
@@ -25,6 +35,57 @@ ActiveRecord::Schema.define(:version => 20090517003218) do
     t.integer  "project_id"
     t.string   "title"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clients", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "collaborators", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.integer  "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "companies", :force => true do |t|
+    t.string   "name",                         :null => false
+    t.string   "address_1",    :default => "", :null => false
+    t.string   "address_2",    :default => "", :null => false
+    t.string   "state",        :default => "", :null => false
+    t.string   "zipcode",      :default => "", :null => false
+    t.string   "phone_office", :default => "", :null => false
+    t.string   "phone_fax",    :default => "", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "document_versions", :force => true do |t|
+    t.integer  "document_id"
+    t.integer  "version_id"
+    t.string   "version_file_name"
+    t.string   "version_content_type"
+    t.integer  "version_file_size"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "documents", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "git_repositories", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,6 +107,9 @@ ActiveRecord::Schema.define(:version => 20090517003218) do
     t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "completed",      :default => false
+    t.integer  "creator_id",     :default => 0
+    t.integer  "responsible_id", :default => 0
   end
 
   create_table "projects", :force => true do |t|
@@ -58,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20090517003218) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "secret_id"
+    t.integer  "user_id",      :default => 0
   end
 
   create_table "shackmates", :force => true do |t|
@@ -84,7 +149,17 @@ ActiveRecord::Schema.define(:version => 20090517003218) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "completed"
+    t.boolean  "completed",      :default => false
+    t.integer  "creator_id",     :default => 0
+    t.integer  "responsible_id", :default => 0
+  end
+
+  create_table "user_projects", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "user_id"
+    t.integer  "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
@@ -107,6 +182,15 @@ ActiveRecord::Schema.define(:version => 20090517003218) do
     t.string   "address_zip"
     t.string   "address_country"
     t.datetime "updated_at"
+    t.integer  "avatar_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.integer  "photo_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.integer  "company_id"
   end
 
 end

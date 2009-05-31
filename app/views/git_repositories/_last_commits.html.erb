@@ -1,0 +1,8 @@
+<div class="github_rep">
+	<% commits[0..10].each do |commit| %>
+		<div class="gitcommit">
+			<div class="message"><%= commit.message %></div>
+			<div class="author"> by <%= commit.author["name"] %></div>
+		</div>
+	<% end %>
+</div>

@@ -1,12 +1,7 @@
-class TodosController < BaseController
+class TodosController < ProjectBaseController
   layout "projects"
   
-  before_filter :select_project
   before_filter :select_todo_list
-  
-  def select_project
-    @project = Project.find(params[:project_id])
-  end
   
   def select_todo_list
     @todo_list = @project.todo_lists.find(params[:todo_list_id])
@@ -26,6 +21,7 @@ class TodosController < BaseController
   
   def create
     @todo = @todo_list.todos.new(params[:todo])
+    @todo.creator=current_user
     
     respond_to do |format|  
        if @todo.save
@@ -47,12 +43,10 @@ class TodosController < BaseController
   
   def update
     @todo = @todo_list.todos.find(params[:id])
-    if @todo.update_attributes(params[:todo])
-      flash[:notice] = "Successfully updated todo."
-      redirect_to [@project,@todo_list,@todo]
-    else
-      render :action => 'edit'
-    end
+    @todo.update_attributes(params[:todo])
+    
+    render :action => "show.js.rjs",
+           :locals => {:project => @project, :todo_list => @todo_list, :todo => @todo }
   end
   
   def destroy
@@ -67,5 +61,17 @@ class TodosController < BaseController
       }
       format.js
     end
+  end
+  
+  def complete
+    @todo = @todo_list.todos.find(params[:id])
+    @todo.completed=true
+    @todo.save
+  end
+  
+  def uncomplete
+    @todo = @todo_list.todos.find(params[:id])
+    @todo.completed=false
+    @todo.save
   end
 end

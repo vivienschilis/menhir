@@ -1,3 +1,7 @@
+.light {
+	
+	font-weight:normal;
+}
 .overview tr {
 	padding:4px;
 	border:none;
@@ -10,11 +14,16 @@
 
 .overview tr td.what {
 	width:68px;
+	
 }
 
 .overview tr td.item {
 	border-bottom: 1px solid rgb(240, 240, 238);
 	text-align:left;
+}
+
+.overview tr td.item.completed {
+	text-decoration: line-through;
 }
 
 .overview h2.date {
@@ -39,9 +48,11 @@
 	color: #fff;
 	border: none;
 	width:68px;
-	padding:2px 4px 2px 4px;
+	padding:2px 3px 2px 3px;
 	display:block;
 	text-align:right;
+	font-size:12px;
+	
 }
 
 .overview span.todo {
@@ -50,17 +61,31 @@
 	border: none;
 	text-align:right;
 	width:68px;
-	padding:2px 4px 2px 4px;
+	padding:2px 3px 2px 3px;
 	display:block;
+	font-size:12px;
+	
 }
 
 .overview h2.date span.other {
-	border-bottom: 1px solid rgb(102, 102, 102);
+	border-bottom: 1px solid #B2B2B2;
 	color: rgb(102, 102, 102);
 	padding-left:34px;
 	text-align:right;
 	width:68px;
-	font-size:13px;
+	font-size:10px;
+	text-transform: uppercase; 
+ 
+}
+
+.todo_list {
+	margin-bottom:15px;
+	
+}
+
+.todo_list .content {
+	margin-left:15px;
+	
 }
 
 .todo_list .todo_list_title {
@@ -72,18 +97,27 @@
 .todo_list .add_todo_list {
 	padding:5px;
 	background-color: rgb(240, 240, 240);
-	width:450px;
+	width:90%;
+	margin-left:30px;
 }
 .todo_list .new_todo_list {
 	padding:5px;
 	background-color: rgb(240, 240, 240);
-	width:450px;
+	width:90%;
+	margin-left:30px;
+	
 }
 
 .todo_list .todos {
 	margin-left:15px;
 	margin-top:10px;
 }
+
+.todo_list .todos.uncompleted {
+	margin-left:0px;
+	margin-top:10px;
+}
+
 
 .todo_list .todos ul {
 	list-style-type:none;
@@ -94,8 +128,467 @@
 .todo_list .todos ul li {
 	margin-bottom:4px;
 	font-size:14px;
-}`
+}
 
 .drage_handle {
 	cursor
+}
+
+.datepicker {
+	float:left;
+	margin-right:20px;
+	border-right: 1px solid rgb(204, 204, 204)
+}
+
+table {
+	border-collapse:collapse
+}
+
+.calendar td {
+	border-bottom: 2px solid rgb(255, 255, 255);
+}
+
+.calendar {
+	color : grey;
+	font-size:11px;
+	text-align:center;
+}
+.calendar .current_month {
+	color : black;
+	background-color: rgb(198, 214, 238);
+}
+
+.calendar th {
+	font-weight: normal;
+	padding-bottom:5px;
+}
+
+.calendar td {
+	padding: 5px;
+}
+
+
+.calendar .header {
+	margin-bottom:10px;
+}
+
+.calendar td:hover{
+	background-color: #8697E7;
+	cursor :pointer;
+}
+
+.calendar td.selected, .calendar td.selected :hover{
+	background-color: black;
+	color:#fff;
+}
+
+.calendar .month {
+	display:none;
+}
+
+.calendar .month.current {
+	display:inline;
+}
+
+table.milestones {
+	border: 1px solid rgb(204, 204, 204);
+	width: 100%;
+	border-spacing: 2px 2px;
+	border-collapse: separate;
+	margin-bottom:10px;
+}
+
+table.milestones th {
+	background: rgb(233, 233, 233);
+	border-bottom: 2px solid rgb(255, 255, 255);
+	font-size: 13px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	padding: 5px;
+	text-align:left;
+}
+
+table.milestones td {
+	padding: 3px 5px;
+}
+
+table.milestones_calendar {
+	border-spacing: 1px 1px;
+	margin-bottom: 2px;
+	background: rgb(225, 224, 224);
+	width: 100%;
+	font-size:13px;
+	font-weight:normal;
+	border-color: gray;
+	border-collapse: separate;
+	
+}
+
+table.milestones_calendar th {
+	color: rgb(102, 102, 102);
+	padding: 3px;
+	text-align: left;
+	background: transparent;
+	font-size:10px;
+	font-weight:bold;
+}
+
+table.milestones_calendar td {
+	padding: 3px 5px;
+	background: rgb(240, 240, 240);
+	color: rgb(204, 204, 204);
+	font-size: 9px;
+	vertical-align: top;
+	text-align: left;
+}
+
+table.milestones_calendar td.today {
+	background: rgb(255, 255, 204);
+	color: rgb(51, 51, 51);
+}
+
+table.milestones_calendar td.with {
+	color: rgb(51, 51, 51);
+	background: white;
+	border: 1px solid rgb(0, 0, 0);
+	font-weight: bold;
+}
+
+table.milestones_calendar td a {
+	font-size:10px;
+}
+
+.UpcomingMilestones {
+	background-color: rgb(255, 204, 0);
+	color: black;
+	padding: 3px;
+	text-align: left;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 4px 4px 4px 4px;
+	
+}
+
+.CompletedMilestones {
+	background-color: rgb(0, 153, 0);
+	color: #fff;
+	padding: 3px;
+	text-align: left;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 4px 4px 4px 4px;
+	margin: 3px 0px 3px 0px;
+	
+}
+
+.LateMilestones {
+	background-color: rgb(204, 0, 0);
+	color: #fff;
+	padding: 3px;
+	text-align: left;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 4px 4px 4px 4px;
+	margin: 3px 0px 3px 0px;
+	
+}
+
+.Milestones {
+	border-bottom: 1px solid rgb(224, 224, 224);
+	padding: 8px 0px 8px 5px;
+	font-weight:bold;
+	color: rgb(51, 51, 51);
+}
+
+.Milestones .widget {
+}
+
+
+.late {
+	color:rgb(204, 0, 0);
+	
+}
+
+.Milestones .widget .late{
+	color:rgb(204, 0, 0);
+	margin-bottom:7px;
+	font-size:10px;
+	
+}
+
+.Milestones .widget .upcoming{
+	color:rgb(204, 153, 51);
+	margin-bottom:7px;
+	font-size:10px;
+	
+}
+
+.subheader {
+border-bottom: 1px solid rgb(0, 0, 0);
+color: black;
+margin: 15px 0px 5px 0px;
+padding: 0px 0px 2px 0px;
+font-weight: bold;
+font-size:12px;
+}
+
+.upload_form {
+	background:grey;
+	padding:4px;
+	border: 1px grey;
+}
+
+.upload_field {
+	width :200px;
+	height:50px;
+	background: white;
+	
+	padding: 10px;
+}
+
+table.document {
+	margin-bottom:30px;
+}
+
+table.document tr {	
+
+}
+
+table.document tr.date_uploaded h2 {
+	margin-left: -15px;
+ 	text-transform: uppercase; 
+}
+
+table.document tr.date_uploaded h2 span{	
+	border-bottom: 1px solid rgb(102, 102, 102);
+	color: rgb(102, 102, 102);	
+	font-size:10px;
+	font-style:italic;
+	text-align:right;
+	padding-left:34px;
+	
+}
+table.document tr td.content_type_icon {
+	vertical-align:top;
+	margin-right:5px;
+	padding:3px 7px 3px 2px;
+}
+table.document tr td {
+	padding-bottom:4px;
+}
+
+table.document tr td a, table.document tr td a:visited, table.document tr td a:hover, table.document tr td a:active {
+	color:gray;
+	text-decoration:underline;
+}
+
+table.document tr td div.title{	
+	font-size:16px;
+}
+
+table.document tr td div.title a, table.document tr td div.title  a:visited,  table.document tr td div.title  a:active {
+	color:black;
+	text-decoration:none;
+}
+
+table.document tr td div.title a:hover {
+	text-decoration:underline;
+}
+
+table.document tr td.subversion{	
+	font-size:10px;
+	font-weight:bold;
+}
+
+table.document tr td div.description {
+	font-size:14px;
+}
+
+table.document tr td h2 {
+	margin:0px 0px 0px -16px;
+}
+
+table.document tr td .content_type_icon_small {
+	padding: 3px;
+	vertical-align:middle;
+}
+
+
+
+.block .block-header {
+	background-color: #E7D5FF;
+	padding: 13px 30px 13px 24px;
+}
+
+
+.block .block-header .block-header-links {
+	width:350px;
+	float:right;
+	line-height:20px;
+	text-align:right;
+	display:block;
+}
+
+.bg-grey {
+	padding:5px;
+	background-color: rgb(240, 240, 240);
+}
+
+.form .group.last {
+ margin-bottom: 0px;
+}
+
+
+.form textarea {
+	width:100%;
+}
+
+.form input {
+	padding:3px;
+}
+
+
+.todo_list .todos .todo_content {
+	width:96%;
+}
+
+.todo_list .todos .complete_input
+{
+	float:left;
+	margin-right:5px;
+}
+.todo_list .edit_todo_list {
+	padding:5px;
+	background-color: rgb(240, 240, 240);
+	width:90%;
+	margin-left:30px;
+	
+}
+
+.todo_list .edit_todo_list p.submit, .todo_list .new_todo_list p.submit {
+	padding-top: 6px;
+	padding-bottom: 0px;
+	margin: 2px 0px 2px 0px;
+	
+	border-top: 1px solid #C1C1C1;
+	
+}
+
+.inner {
+	margin-top:20px;
+	margin-bottom:20px;
+
+}
+
+.name {
+	color:#8A8A8A;
+	font-size:12px;
+	font-weight:normal;
+}
+
+
+.userbox.corner {
+	margin-top:8px;
+	color: #FFF;
+	float:right;
+	height:60px;
+	width:300px;
+	-moz-border-radius: 4px;
+   -webkit-border-radius: 4px;
+  	background: #262626;
+	padding: 3px;
+}
+
+.userbox .avatar {
+	height:50px;
+	width:50px;
+/*	border: 1px solid rgb(47, 66, 122);*/
+	float:left;
+	-moz-border-radius: 4px;
+   -webkit-border-radius: 4px;
+}
+
+
+.userbox .box {
+	padding:4px 5px 5px 5px;
+	text-align:right;
+	vertical-align:middle;;	
+}
+
+.userbox .rightbox {
+	margin-left:60px;
+	text-align:left;
+}
+.userbox .box .top {
+	text-align:left;
+	width:100%;
+}
+
+.flashbox {
+	margin-top:8px;
+	float:right;
+	margin-right:100px;
+	width:5 50px;
+}
+
+div.companies_and_users {
+	
+	margin:20px 4px 20px 4px;
+	
+}
+
+
+table.company {
+	margin: 5px;
+	width:100%;
+	padding: 6px;
+	border-collapse: collapse;
+	border-spacing: 2px 2px;
+}
+
+table.company tr.first td {
+	background:#D7D7D7;
+	padding: 6px;
+}
+table.company td.company_remove {
+	text-align:right;
+}
+
+table.company td.company_name {
+	font-weight:bold;
+	font-size:18px;
+	width:70%;
+}
+table.company td {
+	border-bottom: 1px solid rgb(239, 239, 239);
+	padding:8px 6px 8px 6px;
+	margin-bottom:4px;
+}
+
+.add_company {
+	border: 1px solid rgb(239, 239, 239);
+	margin: 4px;
+	padding: 4px;
+}
+
+.add_company h2 {
+	font-size:18px;
+	margin:0px;
+}
+
+
+.github_rep {
+	margin: 10px;
+	border-bottom:grey;
+}
+
+.github_rep .gitcommit {
+	margin-bottom: 5px;
+	border-bottom: 1px solid rgb(240, 240, 238);
+	padding :4px;
+}
+
+.github_rep .gitcommit .author {
+	text-align:right;
+	color:rgb(49, 98, 145);;
 }

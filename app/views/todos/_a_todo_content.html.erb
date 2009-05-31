@@ -1,0 +1,14 @@
+<%= "<span>" %>
+<%= todo.responsible.full_name + ":" if todo.responsible %> 
+<%= "</span>" %> <%= todo.task %> (#<%= todo.id %>)
+
+<span style="vertical-align:middle">
+	<%= link_to_remote "edit", 
+			:url => edit_project_todo_list_todo_path (project, todo_list, todo),
+			:method => :get
+	%> /
+<%= link_to_remote image_tag('trash.gif', :class => 'trash'), 
+		:url => project_todo_list_todo_path(project,todo_list,todo),
+			:method => :delete, :confirm => "are you sure"
+%>
+</span>

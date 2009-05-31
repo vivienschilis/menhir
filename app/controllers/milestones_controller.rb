@@ -1,14 +1,12 @@
-class MilestonesController < BaseController
+class MilestonesController < ProjectBaseController
   layout "projects"
-  
-  before_filter :select_project
-  
-  def select_project
-    @project = Project.find(params[:project_id])
-  end
-  
+
   def index
-    @milestones = @project.milestones.all
+    @lates = @project.milestones.uncompleted.late
+    @upcomings = @project.milestones.uncompleted.upcoming
+    
+    @completed = @project.milestones.completed
+    
   end
   
   def show
@@ -21,6 +19,8 @@ class MilestonesController < BaseController
   
   def create
     @milestone = @project.milestones.new(params[:milestone])
+    @milestone.creator=current_user
+    
     if @milestone.save
       flash[:notice] = "Successfully created milestone."
       redirect_to [@project,@milestone]
@@ -48,5 +48,17 @@ class MilestonesController < BaseController
     @milestone.destroy
     flash[:notice] = "Successfully destroyed milestone."
     redirect_to project_milestones_url
+  end
+  
+  def complete
+    @milestone = @project.milestones.find(params[:id])
+    @milestone.completed=true
+    @milestone.save
+  end
+  
+  def uncomplete
+    @milestone = @project.milestones.find(params[:id])
+    @milestone.completed=false
+    @milestone.save
   end
 end

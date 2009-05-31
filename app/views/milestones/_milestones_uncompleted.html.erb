@@ -1,0 +1,24 @@
+<table class="milestones">
+	<tr>
+		<th>Late and upcoming Milestones</th>
+	</tr>
+	<%	 milestones = project.milestones.late %>
+	<% milestones.each do |milestone| %>
+	<tr>
+		<td>
+		<strong class='late small'><%= time_ago_in_words milestone.date %> late: </strong> <%= link_to milestone.title , project_milestones_path(project) %> 
+		</td>
+	</tr>
+	<% end %>	
+	
+	<tr>
+		<td><br/><b>Due in the next 2 weeks</b></td>
+	</tr>
+	<tr>
+		<td>
+				<% milestones = project.milestones.upcoming %>
+				<%= render :partial => "calendar/milestones", 
+									 :locals => {:project => project, :milestones => milestones} %>
+		</td>
+	</tr>	
+</table>

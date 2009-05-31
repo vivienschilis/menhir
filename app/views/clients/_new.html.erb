@@ -1,0 +1,17 @@
+<div class="add_company">
+<h2>Which company do you want to add to the project?</h2>
+
+<% form_for [project,client], :html => { :class => 'form'} do |form| %>
+After you add a company you'll be able to specify which people from this company can access the project.
+<br/><br/>
+Choose a company (or create a new company)
+
+<br/>
+
+<%= form.select(:company_id, (Company.all - project.companies).collect {|c| [c.name,c.id]}) %>
+
+<br/><br/>
+<%= form.submit "Add this company" %> or 
+<%= link_to_function "Cancel", "" %>
+<% end %>
+</div>

@@ -1,33 +1,42 @@
 ActionController::Routing::Routes.draw do |map|
 
-
   map.login "login", :controller => "user_sessions", :action => "new"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
+  map.signup '/signup', :controller => 'users', :action => 'new'
 
   map.root      :controller => "projects",  :action => "index"
 
   map.dashboard  "dashboard", :controller => "projects",  :action => "index"
 
   map.resources :projects do |project|
+    project.resources :git_repositories, :collection => { :last_commits => :any } 
+    
+    project.resources :clients 
+    project.resources :collaborators
+    
     project.resources :blogposts do |blogpost|
       blogpost.resources :blogcoms      
     end
     
-    project.resources :milestones
+    project.resources :milestones, :member => { :complete => :any,:uncomplete => :any }
     project.resources :todo_lists do |todo_list|
-      todo_list.resources :todos, :member => { :complete => :any }
+      todo_list.resources :todos, :member => { :complete => :any,:uncomplete => :any }
+    end
+        
+    project.resources :documents do |document|
+      document.resources :document_versions, :as => "versions"
     end
     
-    project.resources :images
-    
   end
-  
-  map.resources :shackmates
-  
+    
   map.resources :user_sessions
 
   map.resources :users
-
+  
+  map.resources :companies do |company|
+    company.resources :users
+  end
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

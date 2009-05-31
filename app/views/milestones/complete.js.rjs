@@ -1,0 +1,19 @@
+all_completed_id="all_completed"
+milestone_id="milestone_" + @milestone.id.to_s
+
+page.replace_html "all_completed", :partial => "milestones_completed",
+ 					 :locals => {:project => @project, :milestones =>  @project.milestones.completed}
+
+  
+page.replace_html "all_upcomings", :partial => "milestones_upcomings",
+ 					 :locals => {:project => @project, :milestones =>  @project.milestones.uncompleted.upcoming}
+
+page.replace_html "all_late", :partial => "milestones_late",
+ 					 :locals => {:project => @project, :milestones => @project.milestones.uncompleted.late}
+
+page.replace_html "all_upcoming_weeks", :partial => "milestones_upcoming_weeks",
+           :locals => {:project => @project, :milestones => @project.milestones.uncompleted.upcoming}
+
+
+
+page.visual_effect :highlight, milestone_id

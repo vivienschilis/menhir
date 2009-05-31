@@ -1,0 +1,38 @@
+<div class="block">
+	<div class="block-header">
+		People and permissions
+	</div>
+
+	<div class="content">
+		<div class="inner">
+			<%= render :partial => "new" , :locals => {:project => @project, :client => @project.clients.new }%>
+
+			<div class="companies_and_users">
+				<% @project.companies.each do |company|%>
+				<table class="company" >
+					<tr id="company_<%=company.id%>" class="first">
+						<td class="company_name" ><%=h company.name %></td>
+						<td class="company_remove">Remove company from this project</td>
+					</tr>
+					<% company.users.each do |user|%>
+					<tr>
+						<% if collaborator = user.participate?(@project) %>
+						<%= render :partial => "collaborators/collaborator", 
+											 :locals => { :project => @project, :user => user , :collaborator => collaborator }%>
+						<% else %>
+						<%= render :partial => "collaborators/not_a_collaborator", 
+											 :locals => { :project => @project, :user => user }%>
+						<% end %>
+					</tr>
+					<% end %>
+				</table>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<% content_for :sidebar do %>
+
+
+<% end %>

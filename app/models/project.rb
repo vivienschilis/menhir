@@ -7,7 +7,17 @@ class Project < ActiveRecord::Base
   has_many :milestones, :dependent => :destroy
 
   has_many :todo_lists, :dependent => :destroy
+
+  has_many :documents, :dependent => :destroy
   
-  has_one :image
+  has_one :git_repository
+  
+  belongs_to :user
+  
+  has_many :collaborators
+  has_many :clients
+  
+  has_many :users, :through  => :collaborators
+  has_many :companies, :through  => :clients
   
 end

@@ -1,0 +1,10 @@
+<% if milestones and milestones.size > 0 %>
+	<h2 class="subheader">All upcoming</h2>
+	<% milestones.each do |milestone| %>
+	<div class="Milestones">
+		<%= render :partial => "a_milestone_upcoming",
+		 					 :locals => {:project => project, :milestone => milestone}
+		 %>
+	</div>
+	<% end %>
+<% end %>

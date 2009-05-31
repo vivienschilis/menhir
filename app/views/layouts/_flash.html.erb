@@ -1,0 +1,28 @@
+<div class="flashbox">
+  <div class="flash">
+
+		<% if flash[:notice] %>
+     <div class="message notice">
+       <p><%=flash[:notice]%></p>
+     </div>
+		<%= hide_messsage("notice") %>
+
+		<% end %>
+		
+		<% if flash[:warning] %>
+     <div class="message warning">
+       <p><%=flash[:warning]%></p>
+			<%= hide_messsage("warning") %>
+
+     </div>           
+ 		<% end %>
+
+		<% if flash[:error] %>
+    <div class="message error">
+       <p><%=flash[:error]%></p>
+			<%= hide_messsage("error") %>
+     </div>
+		<% end %>
+	</div>
+</div>
+

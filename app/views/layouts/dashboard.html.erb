@@ -7,7 +7,8 @@
 	<title><%= h(yield(:title) || "Teamshack.net - Manage, publish") %></title>
 
 	<%= stylesheet_link_tag 'base.css' %>
-	<%= stylesheet_link_tag 'themes/teamshack/style.css' %>
+	<%= stylesheet_link_tag 'themes/blue/style.css' %>
+	<%= stylesheet_link_tag 'style.css' %>
 
 	<%= javascript_include_tag :defaults %>
 
@@ -18,6 +19,11 @@
 <body>
   <div id="container">
     <div id="header">
+	
+		<%= render :partial => "users/userbox" %>
+	
+		<%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+	
       <h1><a href="index.html">Dashboard</a></h1>
       <div id="user-navigation">
         <ul>
@@ -35,25 +41,6 @@
       </div>
     </div>    
     <div id="wrapper">
-	    <div class="flash">
-				<% if flash[:notice] %>
-         <div class="message notice">
-           <p><%=flash[:notice]%></p>
-         </div>
-				<% end %>
-				
-				<% if flash[:warning] %>
-         <div class="message warning">
-           <p><%=flash[:warning]%></p>
-         </div>           
-     		<% end %>
-
- 				<% if flash[:error] %>
-        <div class="message error">
-           <p><%=flash[:error]%></p>
-         </div>
-				<% end %>
-			</div>
 	
       <div id="main">
 					<div id="center_display" class="content">

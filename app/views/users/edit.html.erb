@@ -2,10 +2,76 @@
 	<div class="block-header">
 		Edit your personal information
 	</div>
-	
 	<div class="content">
 		<div class="inner">
-			<%= render :partial => 'form' %>
+			<% form_for @user, :html => {:class => "form",:multipart => true} do |f| %>
+
+
+			<div class="bg-grey">
+		    <div class="group">
+		      <div class="left">
+				    <%= f.label :full_name, "Full name:", :class => "label right" %>
+		      </div>
+		      <div class="right">
+				    <%= f.text_field :full_name, :class =>"text_field" %>
+		      </div>              
+		      <div class="clear"></div>
+		   </div>
+		   
+			<div class="group">
+		    <div class="left">
+				  <%= f.label :email, "Email:", :class => "label right" %>
+		    </div>
+		    <div class="right">
+				  <%= f.text_field :email, :class =>"text_field" %>
+		    </div>              
+		    <div class="clear"></div>
+		 </div>
+		</div>
+		
+				<br/>
+				<p> Choose a user name and password</p>
+				<div class="bg-grey">
+			    <div class="group">
+			      <div class="left">
+					    <%= f.label :password, "Password:", :class => "label right" %>
+			      </div>
+			      <div class="right">
+					    <%= f.password_field :password, :class =>"text_field" %>
+			      </div>              
+			      <div class="clear"></div>
+			    </div>
+
+			    <div class="group last">
+			      <div class="left">
+					    <%= f.label :password_confirmation, "Confirmation:", :class => "label right" %>
+			      </div>
+			      <div class="right">
+					    <%= f.password_field :password_confirmation, :class =>"text_field" %>
+			      </div>              
+			      <div class="clear"></div>
+			    </div>
+				</div>
+				<!-- <%# f.fields_for :avatar do |avatar| %>
+							<p style="border: 1px dashed gray;width:95%">  </p>
+							<div class="bg-grey">
+						    <div class="group">
+							    <div class="left">
+										Choose you avatar
+						  		</div>
+						      <div class="right">
+									  <%#= avatar.file_field :photo %>
+						      </div>              
+						      <div class="clear"></div>
+						    </div>
+							</div>
+					<%# end %> -->
+				<br/>
+			   <div class="group navform">
+						<%= f.submit "Update your info" %>
+			   </div>
+			<% end %>
+			
 		</div>
 	</div>
 </div>

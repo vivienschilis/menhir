@@ -1,13 +1,15 @@
-<li id="todo_<%=@atodo.id%>">
-	<% remote_form_for [@project, @atodo_list, @atodo], :url => {:action => "complete" } do |form| %>
+<li id="todo_<%=todo.id%>" >
+	<div class="display:block">
+	<% remote_form_for todo, :url => complete_project_todo_list_todo_path(project, todo_list, todo) do |form| %>
+	
+		<div class="complete_input">
 		<%= image_tag 'drag_handle.gif', :class => 'drag_handle' %>
-		<%= form.check_box(:completed)%> <%= @atodo.task %>
-	
-		<%= link_to_remote image_tag('trash.gif', :class => 'trash'), 
-				:url =>{ :controller => "todos", :action => "destroy" , :id => @atodo.id ,
-					:project_id => @project.id, :todo_list_id => @atodo_list.id } ,
-					:method => :delete, :confirm => "are you sure"
-				%>
-	<% end %>
-	
+		<%= form.check_box(:completed,:onclick => "this.form.onsubmit()") %>&nbsp;
+		</div>
+		<div id="todo_content_<%=todo.id%>" class="todo_content">
+		<%= render :partial => "todos/a_todo_content",  
+			:locals => {:project => project, :todo_list => todo_list, :todo => todo } %>
+		</div >
+	<% end %>	
+	</div>
 </li>

@@ -1,0 +1,7 @@
+sortable_list_id="sortable_todo_list_" + @todo_list.id.to_s
+todo_talk_id="todo_" + @todo.id.to_s
+
+page.remove todo_talk_id
+page.insert_html :bottom, sortable_list_id, :partial => 'a_todo',
+                 :locals => {:project => @project, :todo_list => @todo_list, :todo => @todo }
+page.visual_effect :highlight, todo_talk_id

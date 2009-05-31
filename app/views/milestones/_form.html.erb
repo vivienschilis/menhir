@@ -1,12 +1,30 @@
+<script>
+	var calendar = new Calendar({
+		initValue: "milestone_date",
+		onSelectedDate: function(date){
+			$("milestone_date").setValue(date)
+		}
+	});
+</script>
+
+<div style="height:200px">
 <% form_for [@project,@milestone] do |f| %>
-  <%= f.error_messages %>
+<%= f.error_messages %>
+
+
+	<%= f.hidden_field :date, :value => if @milestone.date; @milestone.date.to_date else Date.today end %>
+	<%= render :partial => 'calendar/show'%>
+	
   <p>
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </p>
-  <p>
-    <%= f.label :date %><br />
-    <%= f.datetime_select :date %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
+
+	<div class='' style="margin-top:5px">Who is responsable?</div>
+	<%= f.select (:responsible_id, [["Vivien",1]],:include_blank => true)%>
+
+	<!-- <div style="border: 1px dashed #999; margin-left:230px; margin-top:10px "></div> -->
+  <p><%= f.submit "Create this milestone" %></p>
 <% end %>
+
+</div>

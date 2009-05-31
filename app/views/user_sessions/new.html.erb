@@ -1,4 +1,3 @@
-<div id="box">
   <div class="block" id="block-login">
     <h2>Login</h2>        
     <div class="content login">
@@ -9,9 +8,7 @@
 						<div class="message error">
 							<p><%= flash[:error] %><p>
 						</div>
-						<script>
-							Effect.Shake('block-login');
-						</script>
+							<%= shake_login_on_error %>
 						<br>
 						<% end %>
 					</div>
@@ -46,4 +43,5 @@
 			<% end %>
     </div>
   </div>
-</div>
+
+<%= set_focus_to_id("user_session_login") %>

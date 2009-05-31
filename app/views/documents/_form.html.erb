@@ -1,0 +1,19 @@
+<% form_for [@project,@document], :html => {:class => "form" , :multipart => true }  do |document_form| %>
+  <%= document_form.error_messages %>
+
+	<% if @document.document_versions.empty? %>
+	<h2>Select a file to upload</h2>
+	<% else %>
+		<h2>Select a file to upload as a new version of
+			 <%= @document.document_versions.last.version_file_name %></h2>
+	<%end %>
+	<div>
+  <% document_form.fields_for :document_versions do |version_form| %>
+  	<%= version_form.file_field :version %>
+	<% end %>
+	</div>
+	
+  <p class="navform right ">
+    <%= document_form.submit "Create" %>
+  </p>
+<% end %>

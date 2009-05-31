@@ -1,0 +1,7 @@
+completed_items="completed_items_" + @todo_list.id.to_s
+todo_talk_id="todo_" + @todo.id.to_s
+
+page.remove todo_talk_id
+page.insert_html :top, completed_items, :partial => 'a_completed_todo',
+                 :locals => {:project => @project, :todo_list => @todo_list, :todo => @todo }
+page.visual_effect :highlight, todo_talk_id

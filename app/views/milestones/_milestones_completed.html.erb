@@ -1,0 +1,10 @@
+<% if milestones and milestones.size > 0 %>
+	<h2 class="CompletedMilestones">Completed</h2>
+	<% milestones.each do |milestone| %>
+	<div class="Milestones">
+		<%= render :partial => "a_milestone_completed",
+		 					 :locals => {:project => project, :milestone => milestone}
+		 %>
+	</div>
+	<% end %>
+<% end %>

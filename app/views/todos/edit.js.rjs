@@ -1,0 +1,3 @@
+todo_content="todo_content_" + @todo.id.to_s
+page.replace_html todo_content, :partial => 'edit_todo',
+          :locals => {:project => @project, :todo_list => @todo_list, :todo=> @todo}

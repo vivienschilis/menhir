@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  type: MyString
+  job: MyText
+  interval: 1
+  last_run_at: 2009-05-25 19:00:02
+
+two:
+  type: MyString
+  job: MyText
+  interval: 1
+  last_run_at: 2009-05-25 19:00:02

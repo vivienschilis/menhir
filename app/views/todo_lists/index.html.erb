@@ -10,35 +10,42 @@
 						<div class="todo_list_title">
 							<%= todo_list.name %>
 						</div>
-						<div id="todo_list_<%=todo_list.id%>_uncompleted_tasks" class="todos">
-							<ul id="sortable_todo_list_<%=todo_list.id%>">
-								<% todo_list.todos.each do |todo| %>
-									<% @atodo_list = todo_list%>
-									<% @atodo = todo %>
-									<%= render :partial => "todos/a_todo" %>
-								<% end %>
-							</ul>
-							<script>Sortable.create("sortable_todo_list_<%=todo_list.id%>", 
-																			{handles:$$('sortable_todo_list_<%=todo_list.id%> img#drag_handle')});
-							</script>	
-							
-						</div>
-						<div id="new_todo_list_<%=todo_list.id%>" class="new_todo_list" style="display:none">
-							<% remote_form_for [@project,todo_list, todo_list.todos.new] do |form| %>
-								<div class='small gray'>Enter a new to-do </div>
-								<%= form.text_area :task, :rows => 3, :cols=>50 %>
-								<p><%= form.submit "Add this todo" %> or 
-									<%= link_to_function 'cancel', "
-									$('add_todo_list_#{todo_list.id}').show();
-									$('new_todo_list_#{todo_list.id}').hide();
-									" %>
-								</p>
-								<div class='small gray'>Who is responsable?</div>
-							<% end %>
-						</div>				
-						<div id="add_todo_list_<%=todo_list.id%>" class="add_todo_list">
-							<%= link_to_function("New todo"," 
-							$('new_todo_list_#{todo_list.id}').show(); $('add_todo_list_#{todo_list.id}').hide();")%>
+						
+						<div class="content">
+							<div id="todo_list_<%=todo_list.id%>_uncompleted_tasks" class="todos uncompleted">
+								<ul id="sortable_todo_list_<%=todo_list.id%>">
+									<% todo_list.todos.uncompleted.each do |todo| %>
+										<%= render :partial => "todos/a_todo",
+										 					 :locals => {:project => @project, :todo_list => todo_list, :todo => todo }
+										 %>
+									<% end %>
+								</ul>
+						
+								<script>Sortable.create("sortable_todo_list_<%=todo_list.id%>", 
+																				{handles:$$('sortable_todo_list_<%=todo_list.id%> img#drag_handle')});
+								</script>
+							</div>
+						
+							<%= render :partial => "todos/new_todo", 
+												 :locals => {:project => @project, :todo_list => todo_list }
+							%>
+					
+							<div id="add_todo_list_<%=todo_list.id%>" class="add_todo_list">
+								<%= link_to_function("New todo"," 
+								$('new_todo_list_#{todo_list.id}').show(); $('add_todo_list_#{todo_list.id}').hide();")%>
+							</div>
+						
+							<div class="todos">
+								<ul id="completed_items_<%=todo_list.id%>" >
+									<% todo_list.todos.completed.each do |todo| %>
+										<% @todo_list = todo_list %>
+										<% @atodo = todo %>
+										<%= render :partial => "todos/a_completed_todo",
+															 :locals => {:project => @project, :todo_list => todo_list, :todo => todo } %>
+									<% end %>
+								
+								<ul>
+							</div>
 						</div>
 					</div>
 				<% end %>

@@ -1,3 +1,75 @@
-<%= render :partial => 'form' %>
+<div class="block">
+	<div class="block-header">Register for a new experience</div>
+	<div class="content">
+		<div class="inner">
+			<br/> <br/>
+			<% form_for @user, :html => {:class => "form"} do |f| %>
+			
+			<div class="bg-grey">
+				<div class="group">
+					<div class="left">
+						<%= f.label :login, "Login:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.text_field :login, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+			
 
-<p><%= link_to "Back to List", users_path %></p>
+				<div class="group">
+					<div class="left">
+						<%= f.label :email, "Email:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.text_field :email, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+			</div>
+
+			<div class="bg-grey">
+				<div class="group">
+					<div class="left">
+						<%= f.label :full_name, "Full name:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.text_field :full_name, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+
+
+
+			<div class="bg-grey">
+				<div class="group">
+					<div class="left">
+						<%= f.label :password, "Password:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.password_field :password, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+
+				<div class="group last">
+					<div class="left">
+						<%= f.label :password_confirmation, "Confirmation:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.password_field :password_confirmation, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+			</div>
+			
+			<br/> <br/>
+			<div class="group navform">
+				<%= f.submit "Sign up now!" %>
+			</div>
+			
+			<% end %>
+
+		</div>
+	</div>
+</div>

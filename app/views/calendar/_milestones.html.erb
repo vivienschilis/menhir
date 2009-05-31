@@ -1,0 +1,45 @@
+<%
+upcomings_hash = Hash.new {|h,k| h[k] = []}
+ 
+ milestones.each{|m| 
+   upcomings_hash[m.date.strftime("%Y-%m-%d").to_sym] << m
+ }
+
+%>
+
+<% number_of_weeks = 2 %>
+
+			<table class="milestones_calendar">
+				<tr>
+					<% day= Date.today %>
+					<% 7.times do %>
+					<th><%=day.strftime("%a")%></th>
+					<% day = day.next %>
+					<% end %>
+				</tr>
+				<% day = Date.today %>
+				
+				<% number_of_weeks.times do |i| %>
+				<tr>
+					<% 7.times do |j| %>
+						<% m=upcomings_hash[day.strftime("%Y-%m-%d").to_sym] %>
+						<td class="<%= 'today' if day.today? %> <%= 'with' unless m.empty? %>">
+							<% if day.today? %>
+								TODAY
+							<% elsif i==0 and j==1 %>
+								<%= day.strftime("%B %d") %>
+							<% else %>
+								<%= day.strftime("%d") %>
+							<% end %>
+							
+								<br/><br/>
+								<% m.each do |milestone|%>
+								<%= link_to milestone.title, project_milestone_path(project, milestone) %>
+								<% end %>
+						</td>
+						<% day = day.next %>
+					<% end %>
+				</tr>
+				<% end%>
+				
+			</table>

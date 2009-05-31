@@ -1,0 +1,16 @@
+<h1 class="UpcomingMilestones">Upcoming</h1>
+<h2 class="subheader">Due in the next 2 weeks</h2>
+
+<table class="milestones">
+	<tr>
+		<th>late and upcoming</th>
+	</tr>
+	<tr>
+		<td>
+
+<%= render :partial => "calendar/milestones", 
+					 :locals => {:project => project, :milestones => milestones} %>
+
+	</td>
+</tr>	
+</table>

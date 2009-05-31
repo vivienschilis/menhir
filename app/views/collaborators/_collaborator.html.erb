@@ -1,0 +1,9 @@
+<% owned = project.user == collaborator.user %>
+<td colspan="2">
+	<% remote_form_for [project, collaborator ], :method => :delete do |form| %>
+	<%=form.hidden_field (:user_id, :value => user.id)%>
+	<%= check_box("","", :checked => true,
+	:onclick => "this.form.onsubmit()", :disabled => owned) %> 
+	<span style="margin-left:5px"> <%=user.full_name%> <%= "(Project owner)" if owned %></span>
+	<% end %>
+</td>

@@ -1,14 +1,20 @@
-class ProjectsController < BaseController
+class ProjectsController < ProjectBaseController  
   layout "projects"
   
+  before_filter :select_project, :except => [:index, :new, :create]
+  before_filter :collaborator_required, :except => [:index, :new, :create]
+  
+  def select_project
+    @project = Project.find(params[:id])
+  end
+
   def index
-    @projects = Project.all
+    @projects = current_user.projects
     
     render "index", :layout => "dashboard"
   end
   
   def show
-    @project = Project.find(params[:id])
   end
   
   def new
@@ -19,21 +25,28 @@ class ProjectsController < BaseController
   end
   
   def create
+    Project.transaction do 
+      
     @project = Project.new(params[:project])
-    if @project.save
-      flash[:notice] = "Successfully created project."
-      redirect_to @project
-    else
-      render :action => 'new'
-    end
+    @project.user = current_user
+     
+      if @project.save
+         @project.clients.create(:company_id => current_user.company.id)
+         @project.collaborators.create(:user_id => current_user.id)
+ 
+        flash[:notice] = "Successfully created project."
+        redirect_to @project
+      else
+        render :action => 'new'
+      end
+
+    end 
   end
   
   def edit
-    @project = Project.find(params[:id])
   end
   
   def update
-    @project = Project.find(params[:id])
     if @project.update_attributes(params[:project])
       flash[:notice] = "Successfully updated project."
       redirect_to @project
@@ -43,7 +56,6 @@ class ProjectsController < BaseController
   end
   
   def destroy
-    @project = Project.find(params[:id])
     @project.destroy
     flash[:notice] = "Successfully destroyed project."
     redirect_to projects_url

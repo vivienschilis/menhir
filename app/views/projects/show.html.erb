@@ -9,31 +9,15 @@
 	
 	<div class="content">
 		<div class="inner">
-			<table class="table overview">
-				<% @project.milestones.each do |milestone|%>
-				<tr class="date">
-					<td class="what" colspan="2"><h2 class="date"><span class="today">TODAY</span></h2></td>
-				</tr>
-				<tr>
-					<td class="what"><span class="milestone">Milestone</span></td>
-					<td class= "item ">blahblahba</td>
-				</tr>
-				<tr class="date">
-					<td class="what" colspan="2"><h2 class="date"><span class="other">septembre 19th</span></h2></td>
-				</tr>
-				<tr>
-					<td class="what"><span class="todo">To-Do</span></td>
-					<td class= "item ">mmomomom</td>
-				</tr>
-				<tr class="odd">
-					<td>
-						<%# remote_form_for [@project,milestone] do |form|%>
-						<%#= form.check_box() %>
-						<%= milestone.title %>
-						</td>
-				</tr>
-				<% end %>
-			</table>
+			
+			<div id="all_uncompleted">
+				<%= render :partial => "milestones/milestones_uncompleted",
+							:locals => {:project => @project } %>
+			</div>
+			
+			<%= render :partial => "milestones/overview",
+						:locals => {:project => @project } %>
+		
 			
 		</div>
 	</div>
@@ -56,4 +40,16 @@
       <li><%= link_to "Manage todo list", project_todo_list_path(@project) %> </li>
     </ul>          
   </div>
+
+	<div class="block">
+	  <h3>Github activity</h3>
+		<div id="github_activity">
+			<span>
+		</div>
+		<% javascript_tag do %>
+			<%=remote_function (:update => "github_activity", 
+													:url => last_commits_project_git_repositories_path(@project),
+													:before => "$('github_activity').insert('loading github')")%>
+		<% end %>
+	</div>
 <% end %>

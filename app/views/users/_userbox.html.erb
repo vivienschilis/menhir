@@ -1,0 +1,16 @@
+<div class="corner userbox">
+	<div class="box">
+		<div class="avatar">
+			<%= image_tag current_user.gravatar %>
+			<%#= image_tag current_user.avatar.photo.url if current_user.avatar %>
+		</div>
+		<div class="rightbox">
+			<div class="top">
+				<span class="email">
+					<%= current_user.email %>
+				</span>
+			</div>
+			<span class="small"><%= current_user.projects.size %>P	</span>
+		</div>
+	</div>
+</div>

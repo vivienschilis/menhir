@@ -7,7 +7,7 @@
 	<title><%= h(yield(:title) || "Teamshack.net - Manage, publish") %></title>
 
 	<%= stylesheet_link_tag 'base.css' %>
-	<%= stylesheet_link_tag 'themes/teamshack/style.css' %>
+	<%= stylesheet_link_tag 'themes/blue/style.css' %>
 	<%= stylesheet_link_tag 'style.css' %>
 
 	<%= javascript_include_tag :defaults %>
@@ -19,6 +19,11 @@
 <body>
   <div id="container">
     <div id="header">
+		
+			<%= render :partial => "users/userbox" %>
+
+			<%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
+
       <h1><%=link_to @project.name, @project %></h1>
       <div id="user-navigation">
         <ul>
@@ -30,34 +35,18 @@
       </div>      
       <div id="main-navigation">
         <ul>
-          <li class="first <%= controller_is_selected('projects') %>"><%= link_to "Projects", @project %></li>
+          <li class="first <%= controller_is_selected('projects') %>"><%= link_to "Overview", @project %></li>
           <li class="<%= controller_is_selected('milestones') %>"><%= link_to "Milestones", project_milestones_path(@project) %></li>
           <li class="<%= controller_is_selected('todo_lists') %>"><%= link_to "To-Dos", project_todo_lists_path(@project) %></li>
+<li class="<%= controller_is_selected('documents') %>"><%= link_to "Documents", project_documents_path(@project) %></li>
+<li class="<%= controller_is_selected('clients') %>"><%= link_to "People", project_clients_path(@project) %></li>
         </ul>
         <div class="clear"></div>
       </div>
     </div>    
     <div id="wrapper">
 	
-	    <div class="flash">
-				<% if flash[:notice] %>
-         <div class="message notice">
-           <p><%=flash[:notice]%></p>
-         </div>
-				<% end %>
-				
-				<% if flash[:warning] %>
-         <div class="message warning">
-           <p><%=flash[:warning]%></p>
-         </div>           
-     		<% end %>
 
- 				<% if flash[:error] %>
-        <div class="message error">
-           <p><%=flash[:error]%></p>
-         </div>
-				<% end %>
-			</div>
 			
       <div id="main">
 					<div id="center_display" class="content">

@@ -7,14 +7,18 @@
 		<title>Teamshack.net - Manage, publish</title>
 
 		<%= stylesheet_link_tag 'base.css' %>
-		<%= stylesheet_link_tag 'themes/teamshack/style.css' %>
+		<%= stylesheet_link_tag 'themes/blue/style.css' %>
 
 		<%= javascript_include_tag :defaults %>
 		
 	</head>
 	<body>
-				Welcome to Teamshack. Please log in to continue.<br />
+		<div id="box">
+			<h1>Teamshack</h1>
 				<%= yield %>
+				Signup for a free account <%= link_to "here", signup_path %>
+		</div>
+				
 	</body>
 	
 </html>

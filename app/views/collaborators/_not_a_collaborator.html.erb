@@ -1,0 +1,8 @@
+<td colspan="2">
+	<% remote_form_for [project, project.collaborators.new ] do |form| %>
+	<%=form.hidden_field (:user_id, :value => user.id)%>
+	<%= check_box("","", :checked => false,
+	:onclick => "this.form.onsubmit()") %> 
+	<span style="margin-left:5px"> <%=user.full_name%></span>
+	<% end %>
+</td>

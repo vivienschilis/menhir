@@ -1,24 +1,11 @@
 <div class="block">
 	<div class="block-header">
-		<div class="block-header-links">
-			<%= link_to "New milestones", new_project_milestone_path(@project) %> |
-	    <%= link_to "New todo list",  new_project_todo_list_path(@project) %> 
-		</div>
-	  Project overview & activity
+		  Lastest activities across your projects
 	</div>
 	
 	<div class="content">
 		<div class="inner">
-			
-			<ul id="sortable_list">
-				<% @projects.each	do |project| %>
-				<li id="item_<%= project.id %>">
-					<% @a_project=project %>
-					<%=render :partial => "a_project"%>
-				</li>
-				<% end %>
-			</ul>
-			
+			qsdqd
 		</div>
 	</div>
 </div>
@@ -29,6 +16,17 @@
   <h3>Manage your projects</h3>
   <ul class="navigation">
     <li><%= link_to "New project", new_project_path %> </li>
+  </ul>          
+</div>
+
+<div class="block">
+  <h3>Your projects</h3>
+  <ul class="navigation">
+		<% @projects.each	do |project| %>
+				<li>
+				<%= link_to	project.name , project %>
+				</li>
+			<% end %>
   </ul>          
 </div>
 <% end %>

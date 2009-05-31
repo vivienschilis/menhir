@@ -1,0 +1,11 @@
+<% title "File" %>
+
+<p>
+  <strong>Name:</strong>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_project_document_path(@project, @document) %> |
+  <%= link_to "Destroy", [@project,@document], :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", project_documents_path(@project) %>
+</p>

@@ -1,0 +1,81 @@
+
+<div class="block">
+	<div class="block-header">
+		Milestones
+	</div>
+
+	<div class="content">
+		<div class="inner">
+			<% @documents.each do |document| %>
+			<div>
+				<table class="document" >
+					<tr class="date_uploaded">
+						<td colspan="2"><h2><span><%= document.updated_at.strftime("%A, %d %B") %></span></h2>
+							</td>
+					</tr>
+				<% number_of_version = document.document_versions.size %>
+				<% document.document_versions.reverse.each_with_index do |version,i| %>
+					<% if i== 0 %>
+						<tr class="fist">
+							<td class="content_type_icon" 
+									rowspan="<%=document.document_versions.size%>">
+									<%= image_tag( version.preview_document , :height => 32) %>
+							</td>
+							<td >
+								<div class="title">
+									<%= link_to version.version_file_name, version.version.url %> 
+								</div>
+								<div class="description">
+									description of the document
+								</div>
+								<div class="small gray">
+									<%= number_of_version.to_s + ")" if number_of_version > 1 %>
+									by John doe <%= version.version_file_size %>K
+									<%= link_to "upload a new version", 
+									new_project_document_document_version_path(@project,document) %>
+									- Edit <%= link_to image_tag ("trash.gif"),
+									 										project_document_document_version_path(@project,document,version),
+																			:confirm => 'Are you sure?',
+									 										:method => :delete %>
+								</div>
+							</td>
+						</tr>
+					<% else %>
+					<tr>
+						<td>
+							<h2 class="other">
+							<span class="small gray">
+								<%=number_of_version  - i %>) 
+								<span class="content_type_icon_small">
+								<%= image_tag( version.preview_document , :height => 16) %>
+								</span>
+								<%= link_to version.version_file_name, version.version.url %> 
+								by John doe <%= version.version_file_size %>K
+								on <%= version.created_at.strftime("%d %a") %>
+								- Edit <%= link_to image_tag ("trash.gif"),
+									 										project_document_document_version_path(@project,document,version),
+																			:confirm => 'Are you sure?',
+									 										:method => :delete %>	
+								</span>
+							</h2>
+						</td>
+					</tr>	
+					<% end %>
+				<% end %>				
+			</table>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<% content_for :sidebar do %>
+
+<div class="block">
+  <h3>Manage your documents</h3>
+  <ul class="navigation">
+    <li><%= link_to "+ New documents", 	new_project_document_path(@project) %></li>
+  </ul>          
+</div>
+
+<% end %>

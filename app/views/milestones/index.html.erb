@@ -1,29 +1,37 @@
+
 <div class="block">
 	<div class="block-header">
 		Milestones
 	</div>
-	
+
 	<div class="content">
 		<div class="inner">
-			<table class="table">
-				<tr>             
-					<th class="first">upcoming</th>
-				</tr>
-				<% @milestones.each do |milestone|%>
-				<tr class="odd">
-					<td>
-						<%# remote_form_for [@project,milestone] do |form|%>
-						<%#= form.check_box() %>
-						<%= milestone.title %> -
-						<%= link_to "edit" , edit_project_milestone_path(@project,milestone)%>
-						</td>
-				</tr>
-				<% end %>
-			</table>
+			<div id="all_late">
+				<%= render :partial => "milestones_late",
+				 					 :locals => {:project => @project, :milestones => @lates}
+				%>
+			</div>
+			
+			<div id="all_upcoming_weeks">
+				<%= render :partial => "milestones_upcoming_weeks",
+							:locals => {:project => @project, :milestones => @upcomings} %>
+			</div>
+			
+			<div id="all_upcomings">
+				<%= render :partial => "milestones_upcomings",
+				 					 :locals => {:project => @project, :milestones => @upcomings}
+				%>
+			</div>
+			
+			<div id="all_completed">
+				<%= render :partial => "milestones_completed",
+				 					 :locals => {:project => @project, :milestones => @completed}
+				%>
+			</div>
+			
+			</div>
 		</div>
-	</div>
 </div>
-
 <% content_for :sidebar do %>
 
 <div class="block">

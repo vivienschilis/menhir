@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_filter :login_required,  :only => [ :index ]
+  before_filter :logout_required, :only => [ :new, :create, ]
+  
+  
   layout "dashboard"
   
   def index
@@ -11,6 +15,8 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    
+    render :layout => "signup"
   end
   
   def create
@@ -24,15 +30,16 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])    
+    @user = current_user
   end
   
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.update_attributes(params[:user])
       flash[:notice] = "Successfully updated user."
       redirect_to @user
     else
+      flash[:error] = "Errors occurred during the update"
       render :action => 'edit'
     end
   end

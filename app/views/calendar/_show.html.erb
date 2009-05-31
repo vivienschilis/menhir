@@ -1,0 +1,55 @@
+<% content_for :head do %>
+<%= javascript_include_tag 'calendar.js' %>
+<% end %>
+
+<% builder = CalendarGrid::Builder.new(6.months.ago, 12) %>
+<% builder.start_wday = 1 %>
+
+<%cal = builder.build %>
+<p>
+
+<div class="datepicker">
+<div class="calendar inner ">
+	<div class="header">
+		<a href="#" method="previous">&larr;</a>
+		<% months = []
+		cal.years.each {|y| 
+			months += y.months.collect {|o| [ o.strftime("%B %Y"),o.strftime("%Y-%m")] }
+		}%>
+		<%= select_tag ("month_selection", options_for_select(months)) %>
+		<a href="#" method="next">&rarr;</a>
+	</div>
+<div>
+
+<%cal.years.each do |y|%>
+      <%y.months.each do |m|%>
+ 			<div class="month <%= 'current' if m.month == Time.now.month && y.year == Time.now.year %>" 
+					month="<%= m.strftime('%Y-%m') %>">
+			  <table>
+					<tr>
+        		<th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th>
+					</tr>
+      		<%m.weeks.collect do |w| %>
+        	<tr>
+        		<%w.each do |day|%>
+							 <%unless day.proxy? %>
+							<td class='date_day current_month <%= ' selected' if day.today? %>'
+								 	date="<%= day.strftime("%Y-%m-%d") %>">
+								<%=day.strftime("%d").to_i.to_s%>&nbsp;
+							</td>
+							 <%else%>
+							<td class='date_day gray' date="<%= day.strftime("%Y-%m-%d") %>">
+								<%=day.strftime("%d").to_i.to_s%>&nbsp;
+							</td>
+							<%end%>
+						<% end %>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+			<%end%>
+<%end%>
+</div>
+</div>
+</div>
+</p>

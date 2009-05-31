@@ -2,12 +2,32 @@
 module ApplicationHelper
   
   def controller_is_selected(controller_name)
-  #  request.request_uri.split('/')[1] == controller_name ? 'active' : ''
     controller.controller_name == controller_name ? 'active' : ''
   end
   
-  def create_button(title, options={})
-    span = content_tag(:span, image_tag("add.png") + "&nbsp;" + title , :class => "button")
-    link_to( span, options[:url])
+  def set_focus_to_id(id)
+      javascript_tag("
+       Event.observe(window, 'load', function() {
+        $('#{id}').focus();
+        })");
   end
+  
+  def hide_messsage(class_message)
+      javascript_tag("
+       Event.observe(window, 'load', function() {
+        e=$$('div.message."+class_message+"').reduce()
+        new PeriodicalExecuter(function(pe) {
+            e.hide()
+            pe.stop();
+        }, 5);
+      })");
+  end
+  
+  def shake_login_on_error
+      javascript_tag("
+       Event.observe(window, 'load', function() {
+    			Effect.Shake('block-login');
+      })");
+  end
+  
 end

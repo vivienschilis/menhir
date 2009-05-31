@@ -1,0 +1,17 @@
+<% title "File Versions" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% for file_version in @file_versions %>
+    <tr>
+      <td><%=h file_version.name %></td>
+      <td><%= link_to "Show", file_version %></td>
+      <td><%= link_to "Edit", edit_file_version_path(file_version) %></td>
+      <td><%= link_to "Destroy", file_version, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New File Version", new_file_version_path %></p>

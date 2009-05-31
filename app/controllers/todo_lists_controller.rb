@@ -1,11 +1,5 @@
-class TodoListsController < BaseController
+class TodoListsController < ProjectBaseController
   layout "projects"
-  
-  before_filter :select_project
-  
-  def select_project
-    @project = Project.find(params[:project_id])
-  end
   
   def index
     @todo_lists =  @project.todo_lists.all
