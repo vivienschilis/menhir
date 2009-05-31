@@ -19,4 +19,4 @@ production:
   adapter: mysql
   database: tribu_production
   user: vivien
-  password:figata88
+  password: figata88
