@@ -1,10 +1,10 @@
 class AddUserAndResponsible < ActiveRecord::Migration
   def self.up
-    add_column :todos,:creator_id, :integer, :default => :null
-    add_column :todos,:responsible_id, :integer, :default => :null
-    add_column :milestones,:creator_id, :integer, :default => :null
-    add_column :milestones,:responsible_id, :integer, :default => :null
-    add_column :projects, :user_id, :integer, :default => :null
+    add_column :todos,:creator_id, :integer
+    add_column :todos,:responsible_id, :integer
+    add_column :milestones,:creator_id, :integer
+    add_column :milestones,:responsible_id, :integer
+    add_column :projects, :user_id, :integer
   end
 
   def self.down
