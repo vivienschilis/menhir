@@ -3,8 +3,9 @@
 	<div class="content">
 		<div class="inner">
 			<br/> <br/>
-			<% form_for @user, :html => {:class => "form"} do |f| %>
-			
+			<% form_for [@company,@user], :html => {:class => "form"} do |f| %>
+			<%= f.error_messages %>
+		  
 			<div class="bg-grey">
 				<div class="group">
 					<div class="left">
@@ -39,6 +40,7 @@
 					<div class="clear"></div>
 				</div>
 
+				<br/> <br/>
 
 
 			<div class="bg-grey">
@@ -57,11 +59,15 @@
 						<%= f.label :password_confirmation, "Confirmation:", :class => "label right" %>
 					</div>
 					<div class="right">
-						<%= f.password_field :password_confirmation, :class =>"text_field" %>
+						<%= f.password_field :password_confirmation , :class =>"text_field" %>
 					</div>              
 					<div class="clear"></div>
 				</div>
 			</div>
+			
+			<br/> <br/>
+			
+		
 			
 			<br/> <br/>
 			<div class="group navform">

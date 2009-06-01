@@ -8,10 +8,17 @@ class GitRepositoriesController < ProjectBaseController
   end
   
   def last_commits
-    u = Octopi::User.find("vivienschilis")
-    repo = u.repository(@project.git_repository.name)
-    
-    render :partial => "last_commits", :locals => {:commits => repo.commits}
+    if @project.git_repository.nil?
+      render :text => "No git reposity configured"
+    else
+      u = Octopi::User.find("vivienschilis")
+      repo = u.repository(@project.git_repository.name)
+      if repo.nil?
+        render :text => "No git reposity found"
+      else
+        render :partial => "last_commits", :locals => {:commits => repo.commits}
+      end
+    end
   end
   
 end

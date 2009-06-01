@@ -20,4 +20,5 @@ class Project < ActiveRecord::Base
   has_many :users, :through  => :collaborators
   has_many :companies, :through  => :clients
   
+  belongs_to :account
 end

@@ -9,7 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090525170002) do
+ActiveRecord::Schema.define(:version => 20090531192916) do
+
+  create_table "accounts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "automated_todo_closings", :force => true do |t|
     t.string   "type"
@@ -73,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20090525170002) do
     t.string   "phone_fax",    :default => "", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "account_id"
   end
 
   create_table "document_versions", :force => true do |t|
@@ -117,8 +125,8 @@ ActiveRecord::Schema.define(:version => 20090525170002) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "completed",      :default => false
-    t.integer  "creator_id",     :default => 0
-    t.integer  "responsible_id", :default => 0
+    t.integer  "creator_id"
+    t.integer  "responsible_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -131,7 +139,8 @@ ActiveRecord::Schema.define(:version => 20090525170002) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "secret_id"
-    t.integer  "user_id",      :default => 0
+    t.integer  "user_id"
+    t.integer  "account_id"
   end
 
   create_table "shackmates", :force => true do |t|
@@ -159,8 +168,8 @@ ActiveRecord::Schema.define(:version => 20090525170002) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "completed",      :default => false
-    t.integer  "creator_id",     :default => 0
-    t.integer  "responsible_id", :default => 0
+    t.integer  "creator_id"
+    t.integer  "responsible_id"
   end
 
   create_table "user_projects", :force => true do |t|
@@ -196,6 +205,7 @@ ActiveRecord::Schema.define(:version => 20090525170002) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.integer  "company_id"
+    t.integer  "account_id"
   end
 
 end

@@ -1,7 +1,6 @@
 class UserSessionsController < ApplicationController
   def new
-    @user_session = UserSession.new
-    
+    @user_session = UserSession.new  
     render :layout => "signin"
   end
   
@@ -12,7 +11,7 @@ class UserSessionsController < ApplicationController
       redirect_to root_url
     else
       flash[:error] = "Login or password is not correct"
-      render :action => 'new'
+      render :action => 'new', :layout => "signin"
     end
   end
   
