@@ -1,0 +1,91 @@
+<div class="block">
+	<div class="block-header">
+  	New company
+	</div>
+	<div class="content">
+  	<div class="inner">
+		
+			<% form_for @company, :html => {:class => "form"} do |f| %>
+			<%= f.error_messages %>
+
+			<div class="bg-grey">
+				<div class="group">
+					<div class="left">
+						<%= f.label :name, "Name:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.text_field :name, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+
+				<div class="group">
+					<div class="left">
+						<%= f.label :address_1, "Address 1:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.text_field :address_1, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+
+				<div class="group">
+					<div class="left">
+						<%= f.label :address_2, "Address 2:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.text_field :address_2, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+
+				<div class="group">
+					<div class="left">
+						<%= f.label :state, "State:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.text_field :state, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+
+				<div class="group">
+					<div class="left">
+						<%= f.label :zipcode, "Zipcode:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.text_field :zipcode, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+
+				<div class="group">
+					<div class="left">
+						<%= f.label :phone_office, "Office:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.text_field :phone_office, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>			
+
+				<div class="group">
+					<div class="left">
+						<%= f.label :phone_fax, "Fax:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= f.text_field :phone_fax, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+
+			<br/> <br/>
+			<div class="group navform">
+				<%= f.submit "Create" %>
+			</div>
+
+			<% end %>
+		
+		</div>
+	</div>
+</div>

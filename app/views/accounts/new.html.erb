@@ -1,0 +1,99 @@
+<div class="block">
+	<div class="block-header">Register for a new experience</div>
+	<div class="content">
+		<div class="inner">
+			<br/> <br/>
+
+<% form_for @account, :html => {:class => "form"} do |account_form| %>
+			
+	<% account_form.fields_for :user do |user_form| %>
+
+			<%= user_form.error_messages %>
+		  
+			<div class="bg-grey">
+				<div class="group">
+					<div class="left">
+						<%= user_form.label :login, "Login:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= user_form.text_field :login, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+			
+
+				<div class="group">
+					<div class="left">
+						<%= user_form.label :email, "Email:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= user_form.text_field :email, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+			</div>
+
+			<div class="bg-grey">
+				<div class="group">
+					<div class="left">
+						<%= user_form.label :full_name, "Full name:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= user_form.text_field :full_name, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+
+				<br/> <br/>
+
+
+			<div class="bg-grey">
+				<div class="group">
+					<div class="left">
+						<%= user_form.label :password, "Password:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= user_form.password_field :password, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+
+				<div class="group last">
+					<div class="left">
+						<%= user_form.label :password_confirmation, "Confirmation:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= user_form.password_field :password_confirmation , :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+			</div>
+			
+			<br/> <br/>
+	<% end %>
+			
+	<% account_form.fields_for :company do |company_form| %>
+				<div class="group last">
+					<div class="left">
+						<%= company_form.label :name, "Company name:", :class => "label right" %>
+					</div>
+					<div class="right">
+						<%= company_form.text_field :name, :class =>"text_field" %>
+					</div>              
+					<div class="clear"></div>
+				</div>
+			</div>
+	<% end %>
+			
+			
+			<br/> <br/>
+			<div class="group navform">
+				<%= account_form.submit "Sign up now!" %>
+			</div>
+			
+
+		</div>
+	</div>
+</div>
+
+<% end %>

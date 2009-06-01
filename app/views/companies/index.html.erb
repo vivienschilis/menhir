@@ -1,0 +1,29 @@
+<div class="block">
+	<div class="block-header">
+		All Companies
+	</div>
+	<div class="content">
+  	<div class="inner">
+			<% if @companies %>
+			<div class="companies_and_users">
+
+				<% @companies.each do |company| %>
+				<table class="company" >
+							<tr id="company_<%=company.id%>" class="first">
+								<td class="company_name" ><%=h company.name %></td>
+								<td class="company_remove">Remove company from this project</td>
+							</tr>
+							<tr>
+								<td>
+									<%= link_to "Edit", edit_company_path(company) %> | 
+									<%= link_to "Add a person", new_company_user_path(company) %>
+									
+								</td>
+							</tr>
+					</table>
+				<% end %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
