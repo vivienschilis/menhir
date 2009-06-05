@@ -19,11 +19,11 @@ class UsersController < ApplicationController
   
   def new
     @user = @company.users.new
-    
   end
   
   def create
     @user = @company.users.new(params[:user])
+    @user.account_id = current_account.id
     if @user.save
       flash[:notice] = "Successfully Registred."
       redirect_to [@company,@user]
@@ -33,13 +33,16 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = @company.users.new(params[:id])    
+    @user = @company.users.find(params[:id])    
+    unless @user == current_user
+      flash[:error] = "You have no acces to this part"
+      redirect_back_or_default root_url
+    end
   end
   
   def update
-    @user = @company.users.new(params[:id])
-    
-    if @user.update_attributes(params[:user])
+    @user = @company.users.find(params[:id])
+    if @user == current_user && @user.update_attributes(params[:user]) 
       flash[:notice] = "Successfully updated user."
       redirect_to [@company,@user]
     else

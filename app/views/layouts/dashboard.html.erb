@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title><%= h(yield(:title) || "Teamshack.net - Manage, publish") %></title>
+	<title><%= h(yield(:title) || "MENHIR - The heavy project managment software") %></title>
 
 	<%= stylesheet_link_tag 'base.css' %>
 	<%= stylesheet_link_tag 'themes/blue/style.css' %>
@@ -24,10 +24,10 @@
 	
 		<%= render :partial => "layouts/flash", :locals => {:flash => flash} %>
 	
-      <h1><a href="index.html">Dashboard</a></h1>
+      <h1><%= link_to "Dashboard", root_url %></a></h1>
       <div id="user-navigation">
         <ul>
-          <li><%= link_to "My info", edit_user_path(current_user) %></li>
+          <li><%= link_to "My info", edit_company_user_path(current_user.company, current_user) %></li>
           <li><%= link_to "Logout", logout_path %></li>
         </ul>
         <div class="clear"></div>
@@ -35,7 +35,9 @@
       <div id="main-navigation">
         <ul>
           <li class="first <%= controller_is_selected('projects') %>"><%= link_to "Dashboard", root_path %></li>
-          <li class="<%= controller_is_selected('users') %>"><%= link_to "Users", users_path %></li>
+					<% if current_user.is_account_owner? %>
+          <li class="<%= controller_is_selected('companies') %>"><%= link_to "Companies & users", companies_path %></li>
+					<% end %>
         </ul>
         <div class="clear"></div>
       </div>

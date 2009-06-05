@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<title><%= h(yield(:title) || "Teamshack.net - Manage, publish") %></title>
+	<title><%= h(yield(:title) || "MENHIR - The heavy project managment software") %></title>
 
 	<%= stylesheet_link_tag 'base.css' %>
 	<%= stylesheet_link_tag 'themes/blue/style.css' %>
@@ -38,8 +38,10 @@
           <li class="first <%= controller_is_selected('projects') %>"><%= link_to "Overview", @project %></li>
           <li class="<%= controller_is_selected('milestones') %>"><%= link_to "Milestones", project_milestones_path(@project) %></li>
           <li class="<%= controller_is_selected('todo_lists') %>"><%= link_to "To-Dos", project_todo_lists_path(@project) %></li>
-<li class="<%= controller_is_selected('documents') %>"><%= link_to "Documents", project_documents_path(@project) %></li>
-<li class="<%= controller_is_selected('clients') %>"><%= link_to "People", project_clients_path(@project) %></li>
+					<li class="<%= controller_is_selected('documents') %>"><%= link_to "Documents", project_documents_path(@project) %></li>
+					<% if current_user.is_account_owner? %>
+					<li class="<%= controller_is_selected('clients') %>"><%= link_to "People", project_clients_path(@project) %></li>
+					<% end %>
         </ul>
         <div class="clear"></div>
       </div>

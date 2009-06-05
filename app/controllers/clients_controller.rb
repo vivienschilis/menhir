@@ -1,4 +1,5 @@
 class ClientsController < ProjectBaseController
+  before_filter :account_ower_required
   
   def index
   end
@@ -16,4 +17,13 @@ class ClientsController < ProjectBaseController
        redirect_to project_clients_path(@project)
      end
   end
+
+  def destroy
+    @client = @project.clients.find(params[:id])
+    @client.destroy
+    flash[:notice] = "Client successfully removed"
+    redirect_to project_clients_url(@project)
+  end
+
 end
+

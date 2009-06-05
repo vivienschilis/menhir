@@ -28,6 +28,11 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.user
   end
   
+  def current_project
+    @project
+  end
+  
+  
   def login_required
     unless current_user
       flash[:error] = "You must be logged in to access this page"
@@ -40,6 +45,30 @@ class ApplicationController < ActionController::Base
     if current_user
       flash[:error] = "You must be logged out to access this page"
       redirect_to root_url
+      return false
+    end
+  end
+  
+  def account_ower_required
+    if current_user != current_account.user
+      flash[:error] = "Should be an account owner"
+      redirect_back_or_default root_url
+      return false
+    end
+  end
+  
+  def account_user_required
+    if current_user.company != current_account.company
+      flash[:error] = "Should be an account user"
+      redirect_back_or_default root_url
+      return false
+    end
+  end
+  
+  def project_ower_required
+    if (current_user != current_project.user) && (current_user != current_account.user)
+      flash[:error] = "Should be account owner or account manager"
+      redirect_back_or_default root_url
       return false
     end
   end

@@ -11,6 +11,10 @@ class CompaniesController < BaseController
     render 'new', :layout => "dashboard"
   end
   
+  def edit
+    @company = Company.find(params[:id])
+  end
+  
   def create
     @company = current_account.companies.new(params[:company])
     @company.account_id = current_account.id
@@ -23,4 +27,14 @@ class CompaniesController < BaseController
     end
   end
   
+  def update
+    @company =  Company.find(params[:id])
+    if @company.update_attributes(params[:company])
+      flash[:notice] = "Successfully updated company."
+      redirect_to companies_url
+    else
+      render :action => 'edit'
+    end
+  end
+    
 end

@@ -45,4 +45,12 @@ class User < ActiveRecord::Base
     project.collaborators.find_by_user_id(id)
   end
   
+  def is_account_owner?
+    self.account.user == self
+  end
+  
+  def is_account_user?
+    self.company == self.account.company
+  end
+  
 end

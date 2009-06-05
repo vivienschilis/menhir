@@ -4,7 +4,7 @@
 	</div>
 	<div class="content">
 		<div class="inner">
-			<% form_for @user, :html => {:class => "form",:multipart => true} do |f| %>
+			<% form_for [@user.company, @user], :html => {:class => "form"} do |f| %>
 
 
 			<div class="bg-grey">

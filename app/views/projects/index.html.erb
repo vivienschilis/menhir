@@ -12,12 +12,14 @@
 
 <% content_for :sidebar do %>
 
+<% if current_user.is_account_user? %>
 <div class="block">
   <h3>Manage your projects</h3>
   <ul class="navigation">
     <li><%= link_to "New project", new_project_path %> </li>
   </ul>          
 </div>
+<% end %>
 
 <% if @projects %>
 <div class="block">

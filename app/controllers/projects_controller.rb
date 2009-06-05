@@ -3,7 +3,10 @@ class ProjectsController < ProjectBaseController
 
   before_filter :select_project, :except => [:index, :new, :create]
   before_filter :collaborator_required, :except => [:index, :new, :create]
-
+  before_filter :project_ower_required, :only => [:edit, :update]
+  before_filter :account_user_required, :only => [:new , :create]
+  
+  
   def select_project
     @project = Project.find(params[:id])
   end
@@ -55,11 +58,6 @@ class ProjectsController < ProjectBaseController
     end
   end
 
-  def destroy
-    @project.destroy
-    flash[:notice] = "Successfully destroyed project."
-    redirect_to projects_url
-  end
 
   def update_positions
     params[:sortable_list].each_index do |i|

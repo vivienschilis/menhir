@@ -8,11 +8,19 @@
 			<%= render :partial => "new" , :locals => {:project => @project, :client => @project.clients.new }%>
 
 			<div class="companies_and_users">
-				<% @project.companies.each do |company|%>
+				<% @project.clients.each do |client|%>
+				<% company = client.company %>
 				<table class="company" >
 					<tr id="company_<%=company.id%>" class="first">
 						<td class="company_name" ><%=h company.name %></td>
-						<td class="company_remove">Remove company from this project</td>
+						<% if current_account.company != company %>
+						<td class="company_remove">
+							<%= link_to "Remove company from this project", 
+							 						project_client_path(@project,client), :method => :delete,
+													:confirm => "Are you sure ?"
+							%>
+						</td>
+						<% end %>
 					</tr>
 					<% company.users.each do |user|%>
 					<tr>

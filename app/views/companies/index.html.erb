@@ -11,7 +11,6 @@
 				<table class="company" >
 							<tr id="company_<%=company.id%>" class="first">
 								<td class="company_name" ><%=h company.name %></td>
-								<td class="company_remove">Remove company from this project</td>
 							</tr>
 							<tr>
 								<td>
@@ -27,3 +26,15 @@
 		</div>
 	</div>
 </div>
+
+
+<% content_for :sidebar do %>
+
+<div class="block">
+  <h3>Manage companies and users</h3>
+  <ul class="navigation">
+    <li><%= link_to "+ New company", 	new_company_path(@project) %></li>
+  </ul>          
+</div>
+
+<% end %>
