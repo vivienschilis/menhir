@@ -2,7 +2,7 @@ set :application, "tribu"
 set :deploy_to,  "/home/vivien/public_html/tribu.chipiu.org/#{application}"
 
 set :scm, :git
-set :repository,  "git@github.com:vivienschilis/menhir.git"
+set :repository,  "git://github.com/vivienschilis/menhir.git"
 set :branch, "master"
 
 role :app, "174.143.232.71"

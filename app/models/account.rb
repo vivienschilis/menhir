@@ -11,4 +11,5 @@ class Account < ActiveRecord::Base
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :company
   
+  validates_uniqueness_of :subdomain
 end

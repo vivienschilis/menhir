@@ -1,6 +1,7 @@
 class ProjectBaseController < BaseController
   before_filter :select_project
   before_filter :collaborator_required
+  before_filter :account_required
   
   def select_project
     @project = Project.find(params[:project_id])

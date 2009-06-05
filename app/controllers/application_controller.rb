@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :current_account
 
+
   private
   
   def current_user_session
@@ -18,9 +19,20 @@ class ApplicationController < ActionController::Base
     @current_user_session = UserSession.find
   end
 
-  def current_account
-    return @current_account if defined?(@current_account)
-    @current_account = current_user.account if current_user
+  # def current_account
+  #   return @current_account if defined?(@current_account)
+  #   @current_account = current_user.account if current_user
+  # end
+
+  def account_required  
+     unless current_account  
+       flash[:error] = "Could not find the account '#{current_subdomain}'"   
+       redirect_to 
+     end  
+   end
+
+  def current_account  
+     @account ||= Account.find_by_subdomain(current_subdomain)  
   end
 
   def current_user

@@ -1,11 +1,16 @@
 class UserSessionsController < ApplicationController
   def new
-    @user_session = UserSession.new  
+    @account = Account.find_by_subdomain(current_subdomain);
+    @user_session = UserSession.new()
     render :layout => "signin"
   end
   
   def create
+    @account = Account.find_by_subdomain(current_subdomain);
     @user_session = UserSession.new(params[:user_session])
+    
+    @user_session.account_id = @account.id
+    
     if @user_session.save
       flash[:notice] = "Successfully logged in."
       redirect_to root_url

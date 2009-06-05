@@ -13,7 +13,8 @@ class AccountsController < ApplicationController
     Account.transaction do
       User.transaction do
         @account = Account.new(params[:account])
-  
+        @account.subdomain = user.company.name
+        
         if @account.save
           user = @account.user
           user.account_id = @account.id

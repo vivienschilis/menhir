@@ -1,3 +1,5 @@
+<% if @account %>
+
   <div class="block" id="block-login">
     <h2>Login</h2>        
     <div class="content login">
@@ -45,3 +47,7 @@
   </div>
 
 <%= set_focus_to_id("user_session_login") %>
+
+<% else %>
+	This account doesn't exist. <br/>
+<% end %>

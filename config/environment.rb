@@ -37,6 +37,7 @@ Rails::Initializer.run do |config|
 
   config.gem "authlogic",       :version => "2.0.11"
   config.gem 'gravtastic',      :version => '>= 2.1.0'
+  config.gem 'mbleigh-subdomain-fu', :source => "http://gems.github.com/", :lib => "subdomain-fu"
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
