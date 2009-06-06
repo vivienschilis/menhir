@@ -2,6 +2,7 @@ class TodoListsController < ProjectBaseController
   layout "projects"
   
   def index
+    @responsible_id = params[:responsible_id]
     @todo_lists =  @project.todo_lists.all
   end
   
@@ -17,7 +18,7 @@ class TodoListsController < ProjectBaseController
     @todo_list = @project.todo_lists.new(params[:todo_list])
     if @todo_list.save
       flash[:notice] = "Successfully created todo list."
-      redirect_to [@project,@todo_list]
+      redirect_to project_todo_lists_path(@project)
     else
       render :action => 'new'
     end
@@ -31,7 +32,7 @@ class TodoListsController < ProjectBaseController
     @todo_list = @project.todo_lists.find(params[:id])
     if @todo_list.update_attributes(params[:todo_list])
       flash[:notice] = "Successfully updated todo list."
-      redirect_to [@project,@todo_list]
+      redirect_to project_todo_lists_path(@project)
     else
       render :action => 'edit'
     end

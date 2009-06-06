@@ -93,6 +93,12 @@
 	text-decoration:underline;
 	font-weight:bold;
 }
+.todo_list .todo_list_edit a {
+	font-size:12px;
+	text-decoration:none;
+	font-weight:normal;
+	color: gray;
+}
 
 .todo_list .add_todo_list {
 	padding:5px;
@@ -258,6 +264,21 @@ table.milestones_calendar td a {
 	font-size:10px;
 }
 
+.Milestones .milestone_todo_list {
+	margin: 3px 0px 8px 25px;
+	font-weight:normal;
+	font-color: #999;
+}
+
+.Milestones .milestone_todo_list ul {
+	list-style-type: disc;
+}
+
+.Milestones .milestone_todo_list ul li {
+	list-style: none;
+}
+
+
 .UpcomingMilestones {
 	background-color: rgb(255, 204, 0);
 	color: black;
@@ -306,7 +327,12 @@ table.milestones_calendar td a {
 
 .late {
 	color:rgb(204, 0, 0);
-	
+}
+
+.Milestones .widget .completed {
+	color: rgb(0, 153, 0);
+	margin-bottom:7px;
+	font-size:10px;
 }
 
 .Milestones .widget .late{
@@ -447,6 +473,10 @@ table.document tr td .content_type_icon_small {
 	padding:3px;
 }
 
+.todo_list .related_milestone {
+	font-style:italic;
+	padding: 3px 0px 3px 0px;
+}
 
 .todo_list .todos .todo_content {
 	width:96%;
@@ -591,4 +621,20 @@ table.company td {
 .github_rep .gitcommit .author {
 	text-align:right;
 	color:rgb(49, 98, 145);;
+}
+
+#sidebar .people_on_project p {
+	font-size:12px;
+	color:black;
+	margin: 0px 0px 8px 0px;
+}
+#sidebar .people_on_project .status {
+	color: #999;
+}
+#sidebar .people_on_project .company {
+	border-bottom: 1px dotted rgb(204, 204, 204);
+	margin: 10px 0px 6px 0px;
+	font-weight: bold;
+	font-size:12px;
+	color:black;
 }

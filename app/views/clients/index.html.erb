@@ -15,7 +15,7 @@
 						<td class="company_name" ><%=h company.name %></td>
 						<% if current_account.company != company %>
 						<td class="company_remove">
-							<%= link_to "Remove company from this project", 
+							<%= link_to "Remove company from project", 
 							 						project_client_path(@project,client), :method => :delete,
 													:confirm => "Are you sure ?"
 							%>

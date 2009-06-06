@@ -23,7 +23,7 @@ class MilestonesController < ProjectBaseController
     
     if @milestone.save
       flash[:notice] = "Successfully created milestone."
-      redirect_to [@project,@milestone]
+      redirect_to project_milestones_path(@project)
     else
       render :action => 'new'
     end
@@ -37,7 +37,7 @@ class MilestonesController < ProjectBaseController
     @milestone = @project.milestones.find(params[:id])
     if @milestone.update_attributes(params[:milestone])
       flash[:notice] = "Successfully updated milestone."
-      redirect_to [@project,@milestone]
+      redirect_to project_milestones_path(@project)
     else
       render :action => 'edit'
     end

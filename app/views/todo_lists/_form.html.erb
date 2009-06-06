@@ -2,12 +2,18 @@
   <%= f.error_messages %>
 
   <p>
-		<h3>Name of the Todo liste</h3>
+		<h3>Name of the Todo list</h3>
 		<div class="gray ">eg. Things concerning a new feature)</div>
 	</p>
 	<p >
 		<%= f.text_field :name, :style => "width:400px" %>
 	<p>
+
+
+		<p>
+			<div>Is it related to a milestone?</div>
+			<%= f.select :milestone_id, @project.milestones.map{|m| [m.title, m.id]} , :include_blank => true %>
+		<p>
 
 
   <p class="navform right ">

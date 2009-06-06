@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090605212335) do
+ActiveRecord::Schema.define(:version => 20090606083753) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20090605212335) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "milestone_id"
   end
 
   create_table "todos", :force => true do |t|

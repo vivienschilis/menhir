@@ -5,8 +5,13 @@ class Todo < ActiveRecord::Base
   
   named_scope :completed, :conditions => {:completed => true}
   named_scope :uncompleted, :conditions => {:completed => false}
-
+  named_scope :related_to, lambda {|user_id| 
+                {:conditions => ["responsible_id = ?",user_id]} unless (user_id.nil? or user_id.blank?)
+              }
+  
   belongs_to :creator, :class_name => "User"
   belongs_to :responsible, :class_name => "User"
+  
+  
   
 end

@@ -40,7 +40,7 @@ class ProjectsController < ProjectBaseController
         flash[:notice] = "Successfully created project."
         redirect_to @project
       else
-        render :action => 'new'
+        render :action => 'new', :layout => "dashboard"
       end
 
     end 

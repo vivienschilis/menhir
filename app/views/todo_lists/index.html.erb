@@ -6,15 +6,31 @@
 		<div class="inner">
 			
 				<% @todo_lists.each do |todo_list|%>
+					<% todos_uncomplete = todo_list.todos.uncompleted.related_to(@responsible_id)%>
+					<% todos_complete = todo_list.todos.completed.related_to(@responsible_id)%>
+					<% unless (todos_uncomplete.empty? and todos_complete.empty?) and (!@responsible_id.to_s.blank?) %>
 					<div id="todo_list_<%=todo_list.id%>" class="todo_list">
-						<div class="todo_list_title">
-							<%= todo_list.name %>
+						<div>
+							<span class="todo_list_title"><%= todo_list.name %></span>
+							<span class="todo_list_edit">(<%= link_to "edit", edit_project_todo_list_path(@project, todo_list)%> / 
+								<%= link_to image_tag('trash.gif', :class => 'trash'), 
+										project_todo_list_path(@project,todo_list),
+											:method => :delete, :confirm => "are you sure?"
+								%>)
+								</span>
+						</div>
+						
+						<div class="related_milestone">
+						<% if todo_list.milestone %>
+							Related milestone: <%= todo_list.milestone.date.strftime("%d %B") %> - <%= todo_list.milestone.title %>
+						<% end %>
 						</div>
 						
 						<div class="content">
+
 							<div id="todo_list_<%=todo_list.id%>_uncompleted_tasks" class="todos uncompleted">
 								<ul id="sortable_todo_list_<%=todo_list.id%>">
-									<% todo_list.todos.uncompleted.each do |todo| %>
+									<% todos_uncomplete.each do |todo| %>
 										<%= render :partial => "todos/a_todo",
 										 					 :locals => {:project => @project, :todo_list => todo_list, :todo => todo }
 										 %>
@@ -37,7 +53,7 @@
 						
 							<div class="todos">
 								<ul id="completed_items_<%=todo_list.id%>" >
-									<% todo_list.todos.completed.each do |todo| %>
+									<% todos_complete.each do |todo| %>
 										<% @todo_list = todo_list %>
 										<% @atodo = todo %>
 										<%= render :partial => "todos/a_completed_todo",
@@ -48,6 +64,7 @@
 							</div>
 						</div>
 					</div>
+					<% end %>
 				<% end %>
 
 		</div>
@@ -56,10 +73,30 @@
 
 
 <% content_for :sidebar do %>
+
+
 	<div class="block">
 	  <h3>Manage your To-Do lists</h3>
 	  <ul class="navigation">
 	    <li><%= link_to "+ New Todo-list", 	new_project_todo_list_path(@project) %></li>
 	  </ul>          
 	</div>
+	
+	<div>
+		<div style="margin-bottom:5px">Show to-dos assigned to:</div>
+		<% project_users = @project.users.map {|u| 
+														if u == current_user
+															[" Me (#{ u.full_name}) ", u.id]
+														else
+															[" #{u.full_name} ", u.id]
+														end 
+												} %>
+		<% user_list = options_for_select([["Anyone",""]]+project_users, @responsible_id.to_i) %>
+
+		<% form_for :todolist, :url => project_todo_lists_path(@project), :html => { :method => :get } do |form| %>
+			<%= select_tag ("responsible_id", user_list, :onchange => "this.form.submit()") %>
+		<% end %>
+	<div>
+	
+	
 <% end %>

@@ -25,13 +25,11 @@ class TodosController < ProjectBaseController
     
     respond_to do |format|  
        if @todo.save
-          format.html { 
-            flash[:notice] = "Successfully created todo."
-            redirect_to [@project,@todo_list,@todo]
-          }
           format.js
         else
-          render :action => 'new'
+          format.js {
+            render :text => "error"
+          }
         end
     end
    

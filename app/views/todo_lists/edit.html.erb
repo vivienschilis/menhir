@@ -1,6 +1,11 @@
-<%= render :partial => 'form' %>
-
-<p>
-  <%= link_to "Show",  [@project,@todo_list] %> |
-  <%= link_to "View All", project_todo_lists_path(@project) %>
-</p>
+<div class="block">
+	<div class="block-header">
+  	Edit To-Do list
+	</div>
+	<div class="content">
+  	<div class="inner">
+			<%= render :partial => 'form' %>
+			<p><%= link_to "Back to List", project_todo_lists_path(@project) %></p>
+		</div>
+	</div>
+</div>

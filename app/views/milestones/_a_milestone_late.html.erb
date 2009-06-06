@@ -10,4 +10,7 @@
 	<%= form.check_box(:completed, :onclick => "this.form.onsubmit()" )%>&nbsp; <%= milestone.title %>
 
 	<% end %>
+	
+	<%= render :partial => "a_milestone_todo_lists",
+	 					 :locals => {:project => project, :milestone => milestone} %>
 </div>

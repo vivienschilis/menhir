@@ -1,0 +1,9 @@
+<div class="milestone_todo_list">
+	<ul>
+	<% milestone.todo_lists.each do |todo_list| %>
+		<li>
+			ToDo: <%= todo_list.name %>
+		</li>
+	<% end %>
+	</ul>
+</div>

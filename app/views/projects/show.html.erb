@@ -24,32 +24,40 @@
 </div>
 
 <% content_for :sidebar do %>
-<div class="block">
-  <h3>People on this project</h3>
-  <ul class="navigation">
-    <li><%= link_to "User1", "#" %> </li>
-    <li><%= link_to "User2", "#" %> </li>
-  </ul>          
+
+<div class="people_on_project">
+	<div>People on this project</div>
+	
+	<% @project.clients.each do |client| %>
+		<% company = client.company %>
+		<h2 class="company"><%= company.name %></h2>
+		<% company.users.each do |user| %>
+			<% if user.projects.include?(@project) %>
+				<p>
+					<%= user.full_name %>
+					<% if user == current_user%>
+						<br>
+						<span class="status">You are logged in right now</span>
+					<% end %>
+				</p>
+			<% end %>
+		<%end%>
+
+	<% end %>
+	
 </div>
 
-
-  <div class="block">
-    <h3>Manage your project</h3>
-    <ul class="navigation">
-      <li><%= link_to "Manage milestones", project_milestones_path(@project) %> </li>
-      <li><%= link_to "Manage todo list", project_todo_list_path(@project) %> </li>
-    </ul>          
-  </div>
+<!-- <br/> <br/>
 
 	<div class="block">
 	  <h3>Github activity</h3>
 		<div id="github_activity">
 			<span>
 		</div>
-		<% javascript_tag do %>
-			<%=remote_function (:update => "github_activity", 
+		<%# javascript_tag do %>
+			<%#=remote_function (:update => "github_activity", 
 													:url => last_commits_project_git_repositories_path(@project),
 													:before => "$('github_activity').insert('loading github')")%>
-		<% end %>
-	</div>
+		<%# end %>
+	</div> -->
 <% end %>
