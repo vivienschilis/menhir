@@ -20,10 +20,8 @@ class AccountsController < ApplicationController
           user.account_id = @account.id
           user.company_id = @account.company_id
           user.save
-  
           flash[:notice] = "Successfully created account."
-          redirect_to login_path
-  
+          redirect_to login_path(:subdomain => @account.subdomain)
         else
           render :action => 'new', :layout => "signup"
         end
