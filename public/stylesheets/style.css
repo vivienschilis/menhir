@@ -202,6 +202,7 @@ table.milestones {
 	border-spacing: 2px 2px;
 	border-collapse: separate;
 	margin-bottom:10px;
+	
 }
 
 table.milestones th {
@@ -524,8 +525,8 @@ table.document tr td .content_type_icon_small {
 	height:60px;
 	width:300px;
 	-moz-border-radius: 4px;
-   -webkit-border-radius: 4px;
-  	background: #262626;
+  -webkit-border-radius: 4px;
+ 	background: #262626;
 	padding: 3px;
 }
 

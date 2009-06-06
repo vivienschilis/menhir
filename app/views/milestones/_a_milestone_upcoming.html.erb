@@ -2,13 +2,14 @@
 	<% remote_form_for milestone, :url => complete_project_milestone_path(project, milestone) do |form| %>
 	
 	<div class="upcoming">				
-	<span><%= time_ago_in_words Date.today, milestone.date.to_date %> away </span>
+	<span><%= distance_of_time_in_words Date.today, milestone.date %> away </span>
 	<span class="light">(<%= milestone.date.strftime("%A, %d %B %Y")%>)</span>
 	<span class="name"><%= milestone.responsible.login if milestone.responsible %></sapn>
 	<br/>
 	</div>
 
 	<%= form.check_box(:completed, :onclick => "this.form.onsubmit()" )%>&nbsp; <%= milestone.title %>
+	<span><%= link_to "edit", edit_project_milestone_path(project,milestone) %></span>
 
 	<% end %>
 	

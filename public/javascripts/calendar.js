@@ -75,7 +75,20 @@ var Calendar = Class.create({
 		month=select.value
 		$$(".calendar .month.current").reduce().removeClassName("current")
 		$$(".calendar .month[month="+ month + "]").reduce().addClassName("current")
-		
+
+		if (this.selected_day && (reg=this.selected_day.readAttribute("date").match(/^(\d{4})-(\d{2})-(\d{2})$/)) )
+		{
+			var new_day =  month + "-" + reg[3];
+			this.select(new_day);
+			if(this.options.onSelectedDate)
+				this.options.onSelectedDate(new_day);
+		}else
+		{
+			var new_day =  month + "-" + "01";
+			this.select(new_day);
+			if(this.options.onSelectedDate)
+				this.options.onSelectedDate(new_day);
+		}
 	},
 	previousCal: function(e){
 		e.stop()
