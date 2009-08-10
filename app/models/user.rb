@@ -2,7 +2,7 @@ require 'gravtastic'
 
 class User < ActiveRecord::Base
   
-  is_gravtastic
+  is_gravtastic!
   
   GRAVATAR_SIZE = { :thumb => 50 }
   
@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
   belongs_to :account  
   belongs_to :company
   accepts_nested_attributes_for :company
+
+  has_many :milestones, :through => :projects
+  has_many :todo_lists, :through => :projects
+
   
   def self.find_by_login_or_email(login)
     find_by_login(login) || find_by_email(login)
@@ -36,9 +40,10 @@ class User < ActiveRecord::Base
   
   def gravatar(default_size = :thumb)
     
-    self.gravatar_url(:rating => 'R', 
-                      :secure => true, 
-                      :size => GRAVATAR_SIZE[default_size] || GRAVATAR_SIZE[:thumb]) 
+    self.gravatar_url({:rating => 'R', 
+                      :secure => true,  
+                      :size => GRAVATAR_SIZE[default_size] || GRAVATAR_SIZE[:thumb]})
+  
   end
   
   def participate?(project)

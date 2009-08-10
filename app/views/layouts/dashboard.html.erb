@@ -34,7 +34,7 @@
       </div>      
       <div id="main-navigation">
         <ul>
-          <li class="first <%= controller_is_selected('projects') %>"><%= link_to "Dashboard", root_path %></li>
+          <li class="first <%= controller_is_selected('projects') %>"><%= link_to "Activities", root_path %></li>
 					<% if current_user.is_account_owner? %>
           <li class="<%= controller_is_selected('companies') %>"><%= link_to "Companies & users", companies_path %></li>
 					<% end %>

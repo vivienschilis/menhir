@@ -5,7 +5,16 @@
 	
 	<div class="content">
 		<div class="inner">
-			qsdqd
+			
+			<div id="all_uncompleted">
+				<%= render :partial => "milestones/projects_milestones_uncompleted",
+							:locals => {:project => @project } %>
+			</div>
+			
+			<%= render :partial => "milestones/projects_overview",
+						:locals => {:project => @project } %>
+		
+
 		</div>
 	</div>
 </div>

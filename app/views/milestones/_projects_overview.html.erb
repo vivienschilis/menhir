@@ -1,6 +1,6 @@
 <% 
- todo_and_miletones = project.milestones.all
- project.todo_lists.each {|tl| todo_and_miletones += tl.todos }
+ todo_and_miletones = current_user.milestones.all
+ current_user.todo_lists.each {|tl| todo_and_miletones += tl.todos }
  todo_and_miletones = todo_and_miletones.flatten
 
  todo_and_miletones=todo_and_miletones.sort {|a,b| b.updated_at <=> a.updated_at }
@@ -23,7 +23,9 @@
 	<% if item.is_a?(Milestone) %>
 	<tr>
 		<td class="what"><span class="milestone">Milestone</span></td>
-		<td class= "item <%= 'completed' if item.completed? %>"><blahblahba><%= link_to item.title, project_milestones_path(project) %> (Due in <%= item.date.strftime("%d %B") %>)</td>
+		<td class= "item <%= 'completed' if item.completed? %>"><%= link_to item.title, project_milestones_path(project) %> (Due in <%= item.date.strftime("%d %B") %>)
+			</td>
+		<td class="last"><span class="project"><%= item.project.name %></span></td>
 	</tr>
 	<% end %>
 	
@@ -31,7 +33,10 @@
 	<tr>
 		<td class="what"><span class="todo">To-Do</span></td>
 		<td class= "item  <%= 'completed' if item.completed? %>"><%=  item.task%> 
-			(<%= link_to item.todo_list.name , project_todo_lists_path(project) %>)</td>
+			(<%= link_to item.todo_list.name , project_todo_lists_path(project) %>)
+		</td>
+		<td class="what"><span class="project"><%= item.todo_list.project.name %></span></td>
+		
 	</tr>
 	<% end %>
 	

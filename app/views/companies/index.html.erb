@@ -20,6 +20,14 @@
 								</td>
 							</tr>
 					</table>
+					
+					<div class="user_cards">
+						<% company.users.each do |user| %>
+							<%= render :partial => "users/user_card", :locals => { :user => user } %>
+						<% end %>
+					</div>
+					
+					<br class="clearfix">
 				<% end %>
 				</div>
 			<% end %>

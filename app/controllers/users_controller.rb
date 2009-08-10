@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     @user = @company.users.find(params[:id])
     if @user == current_user && @user.update_attributes(params[:user]) 
       flash[:notice] = "Successfully updated user."
-      redirect_to [@company,@user]
+      redirect_to root_url
     else
       flash[:error] = "Errors occurred during the update"
       render :action => 'edit'

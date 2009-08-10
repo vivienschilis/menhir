@@ -54,4 +54,6 @@ class DocumentVersionsController < ProjectBaseController
     document.updated_at=Time.now
     document.save
   end
+  
+  
 end

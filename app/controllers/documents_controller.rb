@@ -18,7 +18,7 @@ class DocumentsController < ProjectBaseController
     @document =  @project.documents.new(params[:document])
     if @document.save
       flash[:notice] = "Successfully created document."
-      redirect_to [@project,@document]
+      redirect_to project_documents_path(@project)
     else
       render :action => 'new'
     end

@@ -2,6 +2,16 @@
 	
 	font-weight:normal;
 }
+
+.clearfix {	
+	clear:both; 	
+	margin:0px;
+	padding:0px; 
+	height: 1px; 
+	font-size: 1px; 
+	line-height: 1px; 
+}
+
 .overview tr {
 	padding:4px;
 	border:none;
@@ -42,6 +52,17 @@
 	font-size:13px;
 }
 
+
+.overview span.project {
+	background-color: #ffffff;
+	border: none;
+	width:90px;
+	padding:2px 3px 2px 3px;
+	display:block;
+	text-align:right;
+	font-size:12px;
+
+}
 
 .overview span.milestone {
 	background-color: #939916;
@@ -570,7 +591,7 @@ div.companies_and_users {
 
 
 table.company {
-	margin: 5px;
+	margin-bottom: 5px;
 	width:100%;
 	padding: 6px;
 	border-collapse: collapse;
@@ -595,6 +616,35 @@ table.company td {
 	padding:8px 6px 8px 6px;
 	margin-bottom:4px;
 }
+
+.user_cards {
+	margin-bottom:10px;
+}
+
+.user_card {
+	float:left;
+	width:190px;
+	height:50px;
+	padding: 4px;
+	border-right: 1px solid rgb(239, 239, 239) ;
+	margin-right:10px;
+}
+
+
+.user_card  .profile_pic {
+	float:left;
+	margin-right:10px;
+}
+
+.user_card  .profile_info {
+	float:left;
+}
+
+.user_card  .name {
+	color :#000;
+}
+
+
 
 .add_company {
 	border: 1px solid rgb(239, 239, 239);

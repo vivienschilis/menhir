@@ -34,7 +34,7 @@ upcomings_hash = Hash.new {|h,k| h[k] = []}
 							
 								<br/><br/>
 								<% m.each do |milestone|%>
-								<%= link_to milestone.title, project_milestone_path(project, milestone) %>
+								<%= link_to milestone.title, project_milestone_path(milestone.project, milestone) %>
 								<% end %>
 						</td>
 						<% day = day.next %>

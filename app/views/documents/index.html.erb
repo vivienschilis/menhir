@@ -33,10 +33,18 @@
 									by John doe <%= version.version_file_size %>K
 									<%= link_to "upload a new version", 
 									new_project_document_document_version_path(@project,document) %>
-									- Edit <%= link_to image_tag ("trash.gif"),
+									- Edit 
+									<% if number_of_version > 1 %>
+									<%= link_to image_tag ("trash.gif"),
 									 										project_document_document_version_path(@project,document,version),
 																			:confirm => 'Are you sure?',
 									 										:method => :delete %>
+									<% else %>
+										<%= link_to image_tag ("trash.gif"),
+									 										project_document_path(@project,document),
+																			:confirm => 'Are you sure?',
+									 										:method => :delete %>
+									<% end %>
 								</div>
 							</td>
 						</tr>

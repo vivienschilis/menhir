@@ -21,7 +21,7 @@ class CompaniesController < BaseController
 
     if @company.save
        flash[:notice] = "Successfully created company."
-       redirect_to root_path
+       redirect_to companies_path
     else
       render :action => 'new', :layout => "dashboard"
     end
