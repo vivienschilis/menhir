@@ -8,6 +8,9 @@ class Milestone < ActiveRecord::Base
   belongs_to :creator, :class_name => "User"
   belongs_to :responsible, :class_name => "User"
   
+  named_scope :related_to, lambda {|user_id| 
+                {:conditions => ["responsible_id = ?",user_id]} unless (user_id.nil? or user_id.blank?)
+              }
   
   default_scope :order => "date DESC"
   

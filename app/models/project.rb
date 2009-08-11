@@ -8,6 +8,8 @@ class Project < ActiveRecord::Base
 
   has_many :todo_lists, :dependent => :destroy
 
+  has_many :todos, :through => :todo_lists
+
   has_many :documents, :dependent => :destroy
   
   has_one :git_repository

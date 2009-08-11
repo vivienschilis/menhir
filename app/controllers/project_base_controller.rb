@@ -2,6 +2,7 @@ class ProjectBaseController < BaseController
   before_filter :select_project
   before_filter :collaborator_required
   before_filter :account_required
+  before_filter :filter_responsible
   
   def select_project
     @project = Project.find(params[:project_id])
@@ -13,4 +14,9 @@ class ProjectBaseController < BaseController
        redirect_to dashboard_path  
     end
   end
+  
+  def filter_responsible
+    @responsible_id = params[:responsible_id]
+  end
+  
 end

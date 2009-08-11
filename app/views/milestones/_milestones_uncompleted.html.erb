@@ -2,7 +2,7 @@
 	<tr>
 		<th>Late and upcoming Milestones</th>
 	</tr>
-	<%	 milestones = project.milestones.late %>
+	<%	 milestones = milestones_late %>
 	<% milestones.each do |milestone| %>
 	<tr>
 		<td>
@@ -16,7 +16,7 @@
 	</tr>
 	<tr>
 		<td>
-				<% milestones = project.milestones.upcoming %>
+				<% milestones = milestones_upcoming %>
 				<%= render :partial => "calendar/milestones", 
 									 :locals => {:milestones => milestones} %>
 		</td>

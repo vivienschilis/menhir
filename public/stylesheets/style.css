@@ -689,3 +689,29 @@ table.company td {
 	font-size:12px;
 	color:black;
 }
+
+
+#sidebar .side_section p {
+	font-size:12px;
+	color:black;
+	margin: 0px 0px 8px 0px;
+}
+#sidebar .side_section .section_entry_comment {
+	color: #999;
+}
+#sidebar .side_section .section_entry {
+	border-bottom: 1px dotted rgb(204, 204, 204);
+	margin: 10px 0px 6px 0px;
+	font-weight: bold;
+	font-size:12px;
+	color:black;
+}
+
+#sidebar .side_section .section_entry .section_entry_right {
+	float:right;
+	font-weight:normal;
+}
+
+#sidebar .side_section .section_entry .section_entry_right a{
+	text-decoration:none;
+}

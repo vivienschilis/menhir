@@ -11,9 +11,8 @@ class ProjectsController < ProjectBaseController
     @project = Project.find(params[:id])
   end
 
-  def index
+  def index    
     @projects = current_user.projects
-
     render "index", :layout => "dashboard"
   end
 

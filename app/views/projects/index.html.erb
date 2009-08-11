@@ -7,12 +7,14 @@
 		<div class="inner">
 			
 			<div id="all_uncompleted">
-				<%= render :partial => "milestones/projects_milestones_uncompleted",
-							:locals => {:project => @project } %>
+				
+				<%= render :partial => "milestones/milestones_uncompleted",				
+							:locals => {:project => @project, :milestones_late =>current_user.milestones.late.related_to(@responsible_id), 
+																								:milestones_upcoming => current_user.milestones.upcoming.related_to(@responsible_id) } %>
 			</div>
 			
 			<%= render :partial => "milestones/projects_overview",
-						:locals => {:project => @project } %>
+						:locals => {:project => @project, :todos => Todo.related_to(@responsible_id).all(:include => current_user.projects), :milestones =>  Milestone.related_to(@responsible_id).all(:include => current_user.projects) } %>
 		
 
 		</div>
@@ -31,16 +33,45 @@
 <% end %>
 
 <% if @projects %>
-<div class="block">
-  <h3>Your projects</h3>
-  <ul class="navigation">
-		<% @projects.each	do |project| %>
-				<li>
-				<%= link_to	project.name , project %>
-				</li>
-			<% end %>
-  </ul>          
+
+
+<div class="side_section">
+	<div class="section_title">Your projects</div>
+	
+	<% @projects.each	do |project| %>
+		<h2 class="section_entry"><%= project.name.to_s.upcase %><span class="section_entry_right"><%= link_to	"enter" , project %>
+		</span>
+		</h2>
+		
+				<p>
+					mlst:<%= project.milestones.uncompleted.count %> –
+					todos:<%= project.todos.uncompleted.count(:id) %> 
+					docs:<%= project.documents.count %>
+
+					<br>
+					<span class="section_entry_comment">Created at <%= project.created_at.strftime("%Y-%m-%d") %></span>
+				</p>
+	<% end %>
 </div>
+
+<br/>
+<div class="side_section">
+	<div class="section_title">Assigned to:</div>
+		<% project_users = User.all(:include => current_user.projects).map {|u| 
+														if u == current_user
+															[" Me (#{ u.full_name}) ", u.id]
+														else
+															[" #{u.full_name} ", u.id]
+														end 
+												} %>
+		<% user_list = options_for_select([["Anyone",""]]+project_users, @responsible_id.to_i) %>
+		<% form_for :project, :url => projects_path, :html => { :method => :get } do |form| %>
+			<%= select_tag ("responsible_id", user_list, :onchange => "this.form.submit()") %>
+		<% end %>
+	<div>
+	
+</div>
+
 <% end %>
 
 <% end %>

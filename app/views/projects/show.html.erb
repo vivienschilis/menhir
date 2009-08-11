@@ -11,13 +11,13 @@
 		<div class="inner">
 			
 			<div id="all_uncompleted">
-				<%= render :partial => "milestones/milestones_uncompleted",
-							:locals => {:project => @project } %>
+				<%= render :partial => "milestones/milestones_uncompleted",				
+							:locals => {:project => @project, :milestones_late => @project.milestones.late.related_to(@responsible_id), 
+																								:milestones_upcoming => @project.milestones.upcoming.related_to(@responsible_id) } %>
 			</div>
 			
 			<%= render :partial => "milestones/project_overview",
-						:locals => {:project => @project } %>
-		
+						:locals => {:todos => @project.todos.related_to(@responsible_id), :milestones => @project.milestones.related_to(@responsible_id)} %>
 			
 		</div>
 	</div>
@@ -25,27 +25,46 @@
 
 <% content_for :sidebar do %>
 
-<div class="people_on_project">
-	<div>People on this project</div>
+<div class="side_section">
+	<div class="section_title" >People on this project</div>
 	
 	<% @project.clients.each do |client| %>
 		<% company = client.company %>
-		<h2 class="company"><%= company.name %></h2>
+		<h2 class="section_entry"><%= company.name %></h2>
 		<% company.users.each do |user| %>
 			<% if user.projects.include?(@project) %>
 				<p>
 					<%= user.full_name %>
 					<% if user == current_user%>
 						<br>
-						<span class="status">You are logged in right now</span>
+						<span class="section_entry_comment">You are logged in right now</span>
 					<% end %>
 				</p>
 			<% end %>
 		<%end%>
 
 	<% end %>
+</div>
+
+<br/>
+<div class="side_section">
+	<div class="section_title">Assigned to:</div>
+		<% project_users = @project.users.all.map {|u| 
+														if u == current_user
+															[" Me (#{ u.full_name}) ", u.id]
+														else
+															[" #{u.full_name} ", u.id]
+														end 
+												} %>
+		<% user_list = options_for_select([["Anyone",""]]+project_users, @responsible_id.to_i) %>
+
+		<% form_for :project, :url => project_path(@project), :html => { :method => :get } do |form| %>
+			<%= select_tag ("responsible_id", user_list, :onchange => "this.form.submit()") %>
+		<% end %>
+	<div>
 	
 </div>
+
 
 <!-- <br/> <br/>
 
