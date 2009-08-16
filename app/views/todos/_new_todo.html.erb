@@ -1,16 +1,30 @@
 <div id="new_todo_list_<%=todo_list.id%>" class="new_todo_list" style="display:none">
 	<% remote_form_for [project,todo_list, todo_list.todos.new] do |form| %>
 	<div style="padding-bottom:5px">
+		
 		<div class='small gray'>Enter a new to-do </div>
 		<%= form.text_area :task, :rows => 3, :cols=>50 %>
-		<div class='small gray' style="margin-top:5px">Who is responsable?</div>
-		<%= form.select (:responsible_id, [["Vivien",1]],:include_blank => true)%>
+		<br class="clearfix">
+		
+		<div style="float:left">
+			<div class='small gray' style="margin:5px 20px 5px 0px;">Who is responsable?</div>
+			<%= form.select (:responsible_id, project.users.map {|u|[u.full_name,u.id]}, :include_blank => true)%>
 		</div>
+		
+		<div style="float:left">
+			<div class='small gray' style="margin:5px 20px 5px 0px;">Label</div>
+			<%= form.select (:label_id, project.labels.map {|u|[u.name,u.id]}, :include_blank => true)%>
+		</div>
+		
+		<br class="clearfix">
+		<br/>
+		
 		<p class="submit"><%= form.submit "Add this todo" %> or 
 			<%= link_to_function 'done', "
 			$('add_todo_list_#{todo_list.id}').show();
 			$('new_todo_list_#{todo_list.id}').hide();
 			" %>
 		</p>
+	</div>
 	<% end %>
 </div>

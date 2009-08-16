@@ -504,6 +504,22 @@ table.document tr td .content_type_icon_small {
 	width:96%;
 }
 
+.todo_list .todos .todo_content .todo_responsible{
+	font-size:11px;
+}
+
+
+.todo_label{
+	padding:1px 6px 1px 6px;
+	font-size:10px;
+	-webkit-border-radius:2px;
+	margin: 0px 4px 0px 0px;
+	text-align:center;
+}
+
+
+
+
 .todo_list .todos .complete_input
 {
 	float:left;

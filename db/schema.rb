@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090606083753) do
+ActiveRecord::Schema.define(:version => 20090811020212) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -118,6 +118,15 @@ ActiveRecord::Schema.define(:version => 20090606083753) do
     t.datetime "updated_at"
   end
 
+  create_table "labels", :force => true do |t|
+    t.integer  "project_id"
+    t.string   "bg_color"
+    t.string   "fg_color"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "milestones", :force => true do |t|
     t.string   "title"
     t.text     "description"
@@ -172,6 +181,7 @@ ActiveRecord::Schema.define(:version => 20090606083753) do
     t.boolean  "completed",      :default => false
     t.integer  "creator_id"
     t.integer  "responsible_id"
+    t.integer  "label_id"
   end
 
   create_table "user_projects", :force => true do |t|

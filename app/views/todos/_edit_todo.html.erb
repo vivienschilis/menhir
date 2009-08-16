@@ -1,11 +1,24 @@
 <div id="edit_todo_list_<%=todo_list.id%>" class="edit_todo_list">
 	<% remote_form_for [project,todo_list, todo] do |form| %>
 		<div style="padding-bottom:5px">
-		<div class='small gray'>Enter a new to-do </div>
-		<%= form.text_area :task, :rows => 3, :cols=>50 %>
-		<div class='small gray' style="margin-top:5px">Who is responsable?</div>
-		<%= form.select (:responsible_id, [["Vivien",1]],:include_blank => true)%>
-		</div>
+				<div class='small gray'>Enter a new to-do </div>
+				<%= form.text_area :task, :rows => 3, :cols=>50 %>
+				<br class="clearfix">
+
+				<div style="float:left">
+					<div class='small gray' style="margin:5px 20px 5px 0px;">Who is responsable?</div>
+					<%= form.select (:responsible_id, project.users.map {|u|[u.full_name,u.id]}, :include_blank => true)%>
+				</div>
+
+				<div style="float:left">
+					<div class='small gray' style="margin:5px 20px 5px 0px;">Label</div>
+					<%= form.select (:label_id, project.labels.map {|u|[u.name,u.id]}, :include_blank => true)%>
+				</div>
+
+				<br class="clearfix">
+				<br/>
+			
+		
 		<p class="submit"><%= form.submit "save" %> or 
 			<%= link_to_remote "cancel", 
 					:url => project_todo_list_todo_path (project, todo_list, todo),
@@ -13,5 +26,6 @@
 			%>
 			
 		</p>
+	</div>
 	<% end %>
 </div>

@@ -27,7 +27,13 @@
 	<% if item.is_a?(Todo) %>
 	<tr>
 		<td class="what"><span class="todo">To-Do</span></td>
-		<td class= "item  <%= 'completed' if item.completed? %>"><%=  item.task%> 
+		<td class= "item  <%= 'completed' if item.completed? %>">
+			<% unless  item.label.nil? %>
+			<span class="todo_label" style="color: #<%= item.label.fg_color %>;background-color: #<%= item.label.bg_color %>;">
+			<%= item.label.name.to_s.upcase -%>
+			</span>
+			<% end %>
+			<%=  item.task %> 
 			(<%= link_to item.todo_list.name , project_todo_lists_path(item.todo_list.project) %>)
 		</td>		
 	</tr>

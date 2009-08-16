@@ -14,7 +14,9 @@
 			</div>
 			
 			<%= render :partial => "milestones/projects_overview",
-						:locals => {:project => @project, :todos => Todo.related_to(@responsible_id).all(:include => current_user.projects), :milestones =>  Milestone.related_to(@responsible_id).all(:include => current_user.projects) } %>
+						:locals => {:project => @project, 
+												:todos => current_user.projects(:include => :todos).map{ |p| p.todos.related_to(@responsible_id)}.flatten, 
+												:milestones =>  current_user.projects(:include => :milestones).map{ |p| p.milestones.related_to(@responsible_id) }.flatten } %>
 		
 
 		</div>
@@ -39,7 +41,7 @@
 	<div class="section_title">Your projects</div>
 	
 	<% @projects.each	do |project| %>
-		<h2 class="section_entry"><%= project.name.to_s.upcase %><span class="section_entry_right"><%= link_to	"enter" , project %>
+		<h2 class="section_entry"><%= project.name.to_s.upcase %><span class="section_entry_right"><%= link_to	"enter &rarr;" , project %>
 		</span>
 		</h2>
 		
@@ -57,13 +59,14 @@
 <br/>
 <div class="side_section">
 	<div class="section_title">Assigned to:</div>
-		<% project_users = User.all(:include => current_user.projects).map {|u| 
-														if u == current_user
-															[" Me (#{ u.full_name}) ", u.id]
-														else
-															[" #{u.full_name} ", u.id]
-														end 
-												} %>
+		<% project_users = current_user.projects(:include => :users).map{ |p| p.users }.flatten.uniq.map {|u| 
+					if u == current_user
+						[" Me (#{ u.full_name}) ", u.id]
+					else
+						[" #{u.full_name} ", u.id]
+					end 
+			} %>
+			
 		<% user_list = options_for_select([["Anyone",""]]+project_users, @responsible_id.to_i) %>
 		<% form_for :project, :url => projects_path, :html => { :method => :get } do |form| %>
 			<%= select_tag ("responsible_id", user_list, :onchange => "this.form.submit()") %>

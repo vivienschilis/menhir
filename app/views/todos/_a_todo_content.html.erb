@@ -1,8 +1,13 @@
-<%= "<span>" %>
-<%= todo.responsible.full_name + ":" if todo.responsible %> 
-<%= "</span>" %> <%= todo.task %> (#<%= todo.id %>)
+<% unless  todo.label.nil? %>
+<span class="todo_label" style="color: #<%= todo.label.fg_color %>;background-color: #<%= todo.label.bg_color %>;"><%= todo.label.name.to_s.upcase %></span>
+<% end %>
+<span class="todo_responsible">
+<%= todo.responsible.full_name + " / " if todo.responsible %> 
+</span>
 
-<span>
+<%= todo.task %> (#<%= todo.id %>)
+
+<span style="float:right">
 	<%= link_to_remote "edit", 
 			:url => edit_project_todo_list_todo_path (project, todo_list, todo),
 			:method => :get
